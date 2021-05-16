@@ -31,8 +31,8 @@ const SigninPage: React.FC = () => {
           <IonCol sizeXs="10" sizeMd="5">
 
             <IonRow className="ion-justify-content-center">
-              <IonCol className="ion-align-self-center" style={{ fontSize: "5em", textAlign: "center" }} >
-                <IonIcon icon={personCircle} />
+              <IonCol className="ion-align-self-center" style={{ textAlign: "center" }} >
+                <IonIcon src="assets/illustrations/signin.svg" style={{ fontSize: "20em" }}></IonIcon>
               </IonCol>
             </IonRow>
 
