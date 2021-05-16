@@ -1,0 +1,8 @@
+{
+  "name": "bloodbath",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "47cc56cc"
+}
