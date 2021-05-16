@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "bloodbath",
+  "appName": "Bloodbath",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
