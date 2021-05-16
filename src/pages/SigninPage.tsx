@@ -1,11 +1,22 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, IonButtons } from '@ionic/react';
 import React, { useState } from 'react';
-import { personCircle } from 'ionicons/icons';
+import { useMutation } from '@apollo/client';
 import './SigninPage.css';
+
+import { MUTATION_SIGNIN } from '../queries/SignIn'
+
 const SigninPage: React.FC = () => {
 
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
+  const [mutationSignIn] = useMutation(MUTATION_SIGNIN)
+
+  const clickSignIn = () => {
+    mutationSignIn({ variables: { email, password } }).then(({ data: { signin }}) => {
+      const apiKey = signin.apiKey
+      console.log(apiKey)
+    }).catch((error) => console.log(error))
+  }
 
   return (
     <IonPage>
@@ -65,7 +76,7 @@ const SigninPage: React.FC = () => {
 
             <IonRow>
               <IonCol>
-                <IonButton expand="block">Sign-in</IonButton>
+                <IonButton expand="block" onClick={clickSignIn}>Sign-in</IonButton>
               </IonCol>
             </IonRow>
 

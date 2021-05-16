@@ -6,7 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "https://api.bloodbath.io/graphql/full",
+  uri: "http://localhost:4000/graphql/full",
+  // uri: "https://api.bloodbath.io/graphql/full",
   cache: new InMemoryCache(),
 });
 
