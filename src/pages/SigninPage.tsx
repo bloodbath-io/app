@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, IonButtons } from '@ionic/react';
 import React, { useState } from 'react';
 import { personCircle } from 'ionicons/icons';
 import './SigninPage.css';
@@ -11,9 +11,13 @@ const SigninPage: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar color="primary">
-          <IonTitle slot="end">
-            Sign-in
-          </IonTitle>
+
+          <IonButtons slot="end">
+            <IonButton color="secondary">
+              Documentation
+            </IonButton>
+          </IonButtons>
+
           <IonTitle slot="start" size="large">
             <a href="/">
               <IonIcon src="assets/icon/logo-reversed.svg" size="large" style={{ verticalAlign: "bottom" }}></IonIcon>
@@ -62,6 +66,12 @@ const SigninPage: React.FC = () => {
             <IonRow>
               <IonCol>
                 <IonButton expand="block">Sign-in</IonButton>
+              </IonCol>
+            </IonRow>
+
+            <IonRow>
+              <IonCol style={{ textAlign: "center" }}>
+                No account yet? You can <a href="/signup">create one for free</a> now.
               </IonCol>
             </IonRow>
 
