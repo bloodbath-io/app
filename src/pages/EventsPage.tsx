@@ -1,5 +1,4 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './EventsPage.css';
 
 const EventsPage: React.FC = () => {
@@ -16,7 +15,7 @@ const EventsPage: React.FC = () => {
             <IonTitle size="large">Events</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Events page" />
+        Events page
       </IonContent>
     </IonPage>
   );

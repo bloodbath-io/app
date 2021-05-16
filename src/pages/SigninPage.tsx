@@ -1,6 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, IonButtons } from '@ionic/react';
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import HeaderComponent from '../components/HeaderComponent'
 import './SigninPage.css';
 
 import { MUTATION_SIGNIN } from '../queries/SignIn'
@@ -14,28 +15,13 @@ const SigninPage: React.FC = () => {
   const clickSignIn = () => {
     mutationSignIn({ variables: { email, password } }).then(({ data: { signin }}) => {
       const apiKey = signin.apiKey
-      console.log(apiKey)
+      // localStorage.set('apiKey', apiKey)
     }).catch((error) => console.log(error))
   }
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar color="primary">
-
-          <IonButtons slot="end">
-            <IonButton color="secondary">
-              Documentation
-            </IonButton>
-          </IonButtons>
-
-          <IonTitle slot="start" size="large">
-            <a href="/">
-              <IonIcon src="assets/icon/logo-reversed.svg" size="large" style={{ verticalAlign: "bottom" }}></IonIcon>
-            </a>
-          </IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <HeaderComponent />
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>

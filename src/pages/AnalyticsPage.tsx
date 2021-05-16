@@ -1,5 +1,4 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './AnalyticsPage.css';
 
 const AnalyticsPage: React.FC = () => {
@@ -16,7 +15,7 @@ const AnalyticsPage: React.FC = () => {
             <IonTitle size="large">AnalyticsPage</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="AnalyticsPage page" />
+        Analytics Page
       </IonContent>
     </IonPage>
   );
