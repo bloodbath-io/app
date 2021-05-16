@@ -1,25 +1,25 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Analytics.css';
+import './AnalyticsPage.css';
 
-const Analytics: React.FC = () => {
+const AnalyticsPage: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Analytics</IonTitle>
+          <IonTitle>AnalyticsPage</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Analytics</IonTitle>
+            <IonTitle size="large">AnalyticsPage</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Analytics page" />
+        <ExploreContainer name="AnalyticsPage page" />
       </IonContent>
     </IonPage>
   );
 };
 
-export default Analytics;
+export default AnalyticsPage;

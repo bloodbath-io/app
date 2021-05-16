@@ -1,25 +1,25 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Events.css';
+import './SettingsPage.css';
 
-const Events: React.FC = () => {
+const SettingsPage: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Events</IonTitle>
+          <IonTitle>SettingsPage</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Events</IonTitle>
+            <IonTitle size="large">SettingsPage</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Events page" />
+        <ExploreContainer name="SettingsPage page" />
       </IonContent>
     </IonPage>
   );
 };
 
-export default Events;
+export default SettingsPage;

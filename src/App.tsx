@@ -12,10 +12,10 @@ import { IonReactRouter } from '@ionic/react-router';
 import PrivateRoute from './PrivateRoute';
 
 import { analytics, settings, list } from 'ionicons/icons';
-import Signin from './pages/Signin';
-import Events from './pages/Events';
-import Analytics from './pages/Analytics';
-import Settings from './pages/Settings';
+import SigninPage from './pages/SigninPage';
+import EventsPage from './pages/EventsPage';
+import AnalyticsPage from './pages/AnalyticsPage';
+import SettingsPage from './pages/SettingsPage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -41,21 +41,21 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-        <Route exact path="/signin">
-            <Signin />
-          </Route>
-          <PrivateRoute exact path="/events">
-            <Events />
-          </PrivateRoute>
-          <Route exact path="/analytics">
-            <Analytics />
-          </Route>
-          <Route path="/settings">
-            <Settings />
-          </Route>
           <Route exact path="/">
             <Redirect to="/signin" />
           </Route>
+          <Route exact path="/signin">
+            <SigninPage />
+          </Route>
+          <PrivateRoute exact path="/events">
+            <EventsPage />
+          </PrivateRoute>
+          <PrivateRoute exact path="/analytics">
+            <AnalyticsPage />
+          </PrivateRoute>
+          <PrivateRoute path="/settings">
+            <SettingsPage />
+          </PrivateRoute>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="events" href="/events">

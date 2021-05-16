@@ -1,7 +1,8 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton } from '@ionic/react';
 import React, { useState } from 'react';
-import './Signin.css';
-const Signin: React.FC = () => {
+import { personCircle } from 'ionicons/icons';
+import './SigninPage.css';
+const SigninPage: React.FC = () => {
 
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
@@ -14,7 +15,9 @@ const Signin: React.FC = () => {
             Sign-in
           </IonTitle>
           <IonTitle slot="start" size="large">
-            <IonIcon src="assets/icon/logo-reversed.svg" size="large" style={{ verticalAlign: "bottom" }}></IonIcon>
+            <a href="/">
+              <IonIcon src="assets/icon/logo-reversed.svg" size="large" style={{ verticalAlign: "bottom" }}></IonIcon>
+            </a>
           </IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -26,6 +29,12 @@ const Signin: React.FC = () => {
         </IonHeader>
         <IonRow className="ion-justify-content-center">
           <IonCol sizeXs="10" sizeMd="5">
+
+            <IonRow className="ion-justify-content-center">
+              <IonCol className="ion-align-self-center" style={{ fontSize: "5em", textAlign: "center" }} >
+                <IonIcon icon={personCircle} />
+              </IonCol>
+            </IonRow>
 
             <IonRow>
               <IonCol>
@@ -64,4 +73,4 @@ const Signin: React.FC = () => {
   );
 };
 
-export default Signin;
+export default SigninPage;
