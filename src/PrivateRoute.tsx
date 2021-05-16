@@ -5,11 +5,14 @@ interface PrivateRouteProps extends RouteProps {
   children: React.ReactNode
 }
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, ...rest }) => {
-  const isAuthenticated = false // logic to ensure user is authenticated
+  const isAuthenticated = () => {
+    if (localStorage.getItem('apiKey') !== null) return true
+    return false
+  }
 
   return (
     <Route {...rest} >
-      {isAuthenticated ? (
+      {isAuthenticated() ? (
         children
       ) : (
         <Redirect to='/signin' />

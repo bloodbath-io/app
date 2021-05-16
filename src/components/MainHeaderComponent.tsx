@@ -1,8 +1,8 @@
 import { IonHeader, IonTitle, IonToolbar, IonIcon, IonButton, IonButtons } from '@ionic/react';
 import React from 'react';
-import './HeaderComponent.css';
+import './MainHeaderComponent.css';
 
-const HeaderComponent: React.FC = () => {
+const MainHeaderComponent: React.FC = () => {
 
   return (
     <IonHeader>
@@ -24,4 +24,4 @@ const HeaderComponent: React.FC = () => {
   );
 };
 
-export default HeaderComponent;
+export default MainHeaderComponent;

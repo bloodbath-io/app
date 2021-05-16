@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, IonButtons } from '@ionic/react';
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import HeaderComponent from '../components/HeaderComponent'
+import MainHeaderComponent from '../components/MainHeaderComponent'
 import './SigninPage.css';
 
 import { MUTATION_SIGNIN } from '../queries/SignIn'
@@ -15,13 +15,22 @@ const SigninPage: React.FC = () => {
   const clickSignIn = () => {
     mutationSignIn({ variables: { email, password } }).then(({ data: { signin }}) => {
       const apiKey = signin.apiKey
-      // localStorage.set('apiKey', apiKey)
-    }).catch((error) => console.log(error))
+      localStorage.setItem('apiKey', apiKey)
+      alert("Sign-in successful")
+    }).catch((error) => {
+      alert(error.message)
+    })
+  }
+
+  const formFilled = () => {
+    if (email === "") return false
+    if (password === "") return false
+    return true
   }
 
   return (
     <IonPage>
-      <HeaderComponent />
+      <MainHeaderComponent />
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
@@ -44,6 +53,7 @@ const SigninPage: React.FC = () => {
                   <IonInput
                     type="email"
                     value={email}
+                    required
                     onIonChange={e => setEmail(e.detail.value!)}
                   >
                   </IonInput>
@@ -53,6 +63,7 @@ const SigninPage: React.FC = () => {
                   <IonInput
                     type="password"
                     value={password}
+                    required
                     onIonChange={e => setPassword(e.detail.value!)}
                   >
                   </IonInput>
@@ -62,7 +73,7 @@ const SigninPage: React.FC = () => {
 
             <IonRow>
               <IonCol>
-                <IonButton expand="block" onClick={clickSignIn}>Sign-in</IonButton>
+                <IonButton expand="block" onClick={clickSignIn} disabled={!formFilled()}>Sign-in</IonButton>
               </IonCol>
             </IonRow>
 
