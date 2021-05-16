@@ -1,4 +1,4 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, RouteProps } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -9,6 +9,8 @@ import {
   IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import PrivateRoute from './PrivateRoute';
+
 import { analytics, settings, list } from 'ionicons/icons';
 import Signin from './pages/Signin';
 import Events from './pages/Events';
@@ -42,9 +44,9 @@ const App: React.FC = () => (
         <Route exact path="/signin">
             <Signin />
           </Route>
-          <Route exact path="/events">
+          <PrivateRoute exact path="/events">
             <Events />
-          </Route>
+          </PrivateRoute>
           <Route exact path="/analytics">
             <Analytics />
           </Route>
@@ -52,7 +54,7 @@ const App: React.FC = () => (
             <Settings />
           </Route>
           <Route exact path="/">
-            <Redirect to="/events" />
+            <Redirect to="/signin" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
