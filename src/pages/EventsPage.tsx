@@ -1,24 +1,37 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, IonAlert } from '@ionic/react';
+import React, { useState } from 'react';
+import MainHeaderComponent from '../components/MainHeaderComponent'
 import './EventsPage.css';
 
-const EventsPage: React.FC = () => {
+const EventPage: React.FC = () => {
+
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Events</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <MainHeaderComponent />
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Events</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        Events page
+        <IonRow className="ion-justify-content-center">
+          <IonCol sizeXs="10" sizeMd="5">
+
+            <IonRow>
+              <IonCol>
+                <IonItem>
+                  OTHER STUFF
+                </IonItem>
+                <IonItem>
+                  STUFF
+                </IonItem>
+              </IonCol>
+            </IonRow>
+
+          </IonCol>
+
+        </IonRow>
       </IonContent>
     </IonPage>
   );
 };
 
-export default EventsPage;
+export default EventPage;

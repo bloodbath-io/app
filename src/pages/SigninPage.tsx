@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, IonButtons } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, IonAlert } from '@ionic/react';
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import MainHeaderComponent from '../components/MainHeaderComponent'
@@ -32,11 +32,6 @@ const SigninPage: React.FC = () => {
     <IonPage>
       <MainHeaderComponent />
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Sign-in</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <IonRow className="ion-justify-content-center">
           <IonCol sizeXs="10" sizeMd="5">
 
