@@ -4,16 +4,16 @@ import { useMutation } from '@apollo/client';
 import MainHeaderComponent from '../components/MainHeaderComponent'
 import './SigninPage.css';
 
-import { MUTATION_SIGNIN } from '../queries/SignIn'
+import { MUTATION_SIGNIN } from '../queries/Signin'
 
 const SigninPage: React.FC = () => {
 
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
-  const [mutationSignIn] = useMutation(MUTATION_SIGNIN)
+  const [mutationSignin] = useMutation(MUTATION_SIGNIN)
 
-  const clickSignIn = () => {
-    mutationSignIn({ variables: { email, password } }).then(({ data: { signin }}) => {
+  const clickSignin = () => {
+    mutationSignin({ variables: { email, password } }).then(({ data: { signin }}) => {
       const apiKey = signin.apiKey
       localStorage.setItem('apiKey', apiKey)
       alert("Sign-in successful")
@@ -23,8 +23,8 @@ const SigninPage: React.FC = () => {
   }
 
   const formFilled = () => {
-    if (email === "") return false
-    if (password === "") return false
+    if (!email) return false
+    if (!password) return false
     return true
   }
 
@@ -73,7 +73,7 @@ const SigninPage: React.FC = () => {
 
             <IonRow>
               <IonCol>
-                <IonButton expand="block" onClick={clickSignIn} disabled={!formFilled()}>Sign-in</IonButton>
+                <IonButton expand="block" onClick={clickSignin} disabled={!formFilled()}>Sign-in</IonButton>
               </IonCol>
             </IonRow>
 

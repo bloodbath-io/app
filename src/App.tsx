@@ -13,6 +13,7 @@ import PrivateRoute from './PrivateRoute';
 
 import { analytics, settings, list } from 'ionicons/icons';
 import SigninPage from './pages/SigninPage';
+import SignupPage from './pages/SignupPage';
 import EventsPage from './pages/EventsPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import SettingsPage from './pages/SettingsPage';
@@ -46,6 +47,9 @@ const App: React.FC = () => (
           </Route>
           <Route exact path="/signin">
             <SigninPage />
+          </Route>
+          <Route exact path="/signup">
+            <SignupPage />
           </Route>
           <PrivateRoute exact path="/events">
             <EventsPage />
