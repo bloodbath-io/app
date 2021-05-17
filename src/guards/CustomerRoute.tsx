@@ -1,23 +1,29 @@
 import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 
-interface PrivateRouteProps extends RouteProps {
+interface CustomerRouteProps extends RouteProps {
   children: React.ReactNode
+  unauthorizedTo: string
 }
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, ...rest }) => {
+
+const DEFAULT_REDIRECT = '/signin'
+
+const CustomerRoute: React.FC<CustomerRouteProps> = ({ children, unauthorizedTo, ...rest }) => {
   const isAuthenticated = () => {
     if (localStorage.getItem('apiKey') !== null) return true
     return false
   }
+
+  const redirect = unauthorizedTo || DEFAULT_REDIRECT
 
   return (
     <Route {...rest} >
       {isAuthenticated() ? (
         children
       ) : (
-        <Redirect to='/signin' />
+        <Redirect to={redirect} />
       )}
     </Route>
   );
 };
-export default PrivateRoute;
+export default CustomerRoute;

@@ -9,7 +9,8 @@ import {
   IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import PrivateRoute from './PrivateRoute';
+import CustomerRoute from './guards/CustomerRoute';
+import GuestRoute from './guards/GuestRoute';
 
 import { analytics, settings, list } from 'ionicons/icons';
 import SigninPage from './pages/SigninPage';
@@ -45,21 +46,21 @@ const App: React.FC = () => (
           <Route exact path="/">
             <Redirect to="/signin" />
           </Route>
-          <Route exact path="/signin">
+          <GuestRoute exact path="/signin" unauthorizedTo="/events">
             <SigninPage />
-          </Route>
-          <Route exact path="/signup">
+          </GuestRoute>
+          <GuestRoute exact path="/signup" unauthorizedTo="/events">
             <SignupPage />
-          </Route>
-          <PrivateRoute exact path="/events">
+          </GuestRoute>
+          <CustomerRoute exact path="/events" unauthorizedTo="/signin">
             <EventsPage />
-          </PrivateRoute>
-          <PrivateRoute exact path="/analytics">
+          </CustomerRoute>
+          <CustomerRoute exact path="/analytics" unauthorizedTo="/signin">
             <AnalyticsPage />
-          </PrivateRoute>
-          <PrivateRoute path="/settings">
+          </CustomerRoute>
+          <CustomerRoute path="/settings" unauthorizedTo="/signin">
             <SettingsPage />
-          </PrivateRoute>
+          </CustomerRoute>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="events" href="/events">
