@@ -15,7 +15,7 @@ const AnalyticsPage: React.FC = () => {
 
             <IonRow className="ion-justify-content-center">
               <IonCol className="ion-align-self-center" style={{ textAlign: "center" }} >
-                <IonIcon src="assets/illustrations/signin.svg" style={{ fontSize: "20em" }}></IonIcon>
+                <IonIcon src="assets/illustrations/analytics.svg" style={{ fontSize: "20em" }}></IonIcon>
               </IonCol>
             </IonRow>
 

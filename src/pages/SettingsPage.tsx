@@ -1,21 +1,59 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonPage, IonRow, IonCol, IonItem, IonIcon, IonTitle, IonButton, IonText, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonGrid } from '@ionic/react';
+import { checkmarkCircle } from 'ionicons/icons';
+import React from 'react';
+import MainHeaderComponent from '../components/MainHeaderComponent'
 import './SettingsPage.css';
 
+
 const SettingsPage: React.FC = () => {
+
+  const currentKey = () => {
+    return localStorage.getItem('apiKey')
+  }
+
+  const createdAt = () => {
+    return "01/01/2010"
+  }
+
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>SettingsPage</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <MainHeaderComponent />
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">SettingsPage</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        Settings page
+        <IonRow className="ion-justify-content-left">
+          <IonCol>
+
+            <IonItem>
+              <IonTitle>
+                Keys
+              </IonTitle>
+            </IonItem>
+
+            <IonGrid class="ion-margin">
+              <IonRow>
+                <IonCol>
+                  <IonCardSubtitle>
+                  Your active keys can be used throughout all our APIs including this dashboard to list, schedule and delete events.
+                  </IonCardSubtitle>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+
+            <IonGrid className="ion-margin">
+              <IonRow className="header">
+                <IonCol size="9">Key</IonCol>
+                <IonCol>Created at</IonCol>
+                <IonCol>Status</IonCol>
+              </IonRow>
+              <IonRow className="body">
+                <IonCol size="9" className="blockquote">{currentKey()}</IonCol>
+                <IonCol>{createdAt()}</IonCol>
+                <IonCol><IonIcon icon={checkmarkCircle}></IonIcon></IonCol>
+              </IonRow>
+            </IonGrid>
+
+          </IonCol>
+
+        </IonRow>
       </IonContent>
     </IonPage>
   );
