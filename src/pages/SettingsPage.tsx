@@ -1,5 +1,4 @@
-import { IonContent, IonPage, IonRow, IonCol, IonItem, IonIcon, IonTitle, IonButton, IonLabel, IonText, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonGrid } from '@ionic/react';
-import { checkmarkCircle } from 'ionicons/icons';
+import { IonContent, IonPage, IonRow, IonCol, IonItem, IonTitle, IonButton, IonLabel, IonCardSubtitle, IonGrid } from '@ionic/react';
 import React from 'react';
 import MainHeaderComponent from '../components/MainHeaderComponent'
 import './SettingsPage.css';
@@ -59,6 +58,25 @@ const SettingsPage: React.FC = () => {
           </IonCol>
         </IonRow>
 
+        <IonRow className="ion-justify-content-left">
+          <IonCol>
+
+            <IonItem>
+              <IonTitle>
+                Billing
+              </IonTitle>
+            </IonItem>
+
+            <IonGrid className="ion-margin">
+              <IonRow>
+                <IonCol>
+                  You're currently on a <a href="/">beta release</a>. Enjoy Bloodbath for free!
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+
+          </IonCol>
+        </IonRow>
 
         <IonRow className="ion-justify-content-left">
           <IonCol>

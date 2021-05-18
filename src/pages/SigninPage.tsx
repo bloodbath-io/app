@@ -1,25 +1,42 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, IonAlert } from '@ionic/react';
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { IonContent, IonPage, useIonToast, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, useIonLoading } from '@ionic/react'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { useMutation } from '@apollo/client'
 import MainHeaderComponent from '../components/MainHeaderComponent'
-import './SigninPage.css';
+import './SigninPage.css'
 
 import { MUTATION_SIGNIN } from '../queries/Signin'
 
 const SigninPage: React.FC = () => {
 
-  const [email, setEmail] = useState<string>();
-  const [password, setPassword] = useState<string>();
+  const [email, setEmail] = useState<string>()
+  const [password, setPassword] = useState<string>()
   const [mutationSignin] = useMutation(MUTATION_SIGNIN)
+  const [toast, dismissToast] = useIonToast();
+  const [loading, dismissLoading] = useIonLoading();
+  let history = useHistory();
 
   const clickSignin = () => {
+    loading('Authentication to Bloodbath', 0, 'dots')
+
     mutationSignin({ variables: { email, password } }).then(({ data: { signin }}) => {
       const apiKey = signin.apiKey
       localStorage.setItem('apiKey', apiKey)
-      alert("Sign-in successful")
-      window.location.href = "/"
+      dismissLoading()
+      history.push('/events')
+      toast({
+        message: `Great! Sign-in successful`,
+        duration: 2000,
+        color: 'success',
+        buttons: [{ text: 'hide', handler: () => dismissToast() }],
+      })
     }).catch((error) => {
-      alert(error.message)
+      dismissLoading()
+      toast({
+        message: `Woops! ${error.message}`,
+        duration: 2000,
+        buttons: [{ text: 'hide', handler: () => dismissToast() }],
+      })
     })
   }
 
