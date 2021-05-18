@@ -17,6 +17,7 @@ const SigninPage: React.FC = () => {
       const apiKey = signin.apiKey
       localStorage.setItem('apiKey', apiKey)
       alert("Sign-in successful")
+      window.location.href = "/"
     }).catch((error) => {
       alert(error.message)
     })

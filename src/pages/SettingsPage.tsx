@@ -15,6 +15,11 @@ const SettingsPage: React.FC = () => {
     return "01/01/2010"
   }
 
+  const clickSignOut = () => {
+    localStorage.removeItem('apiKey')
+    window.location.href = "/"
+  }
+
   return (
     <IonPage>
       <MainHeaderComponent />
@@ -52,7 +57,25 @@ const SettingsPage: React.FC = () => {
             </IonGrid>
 
           </IonCol>
+        </IonRow>
 
+
+        <IonRow className="ion-justify-content-left">
+          <IonCol>
+
+            <IonItem>
+              <IonTitle>
+                Account
+              </IonTitle>
+            </IonItem>
+
+            <IonGrid className="ion-margin">
+              <IonRow>
+                <IonCol><IonButton onClick={clickSignOut}>Sign-out</IonButton></IonCol>
+              </IonRow>
+            </IonGrid>
+
+          </IonCol>
         </IonRow>
       </IonContent>
     </IonPage>
