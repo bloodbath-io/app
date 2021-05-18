@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonRow, IonCol, IonItem, IonIcon, IonTitle, IonButton, IonText, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonGrid } from '@ionic/react';
+import { IonContent, IonPage, IonRow, IonCol, IonItem, IonIcon, IonTitle, IonButton, IonLabel, IonText, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonGrid } from '@ionic/react';
 import { checkmarkCircle } from 'ionicons/icons';
 import React from 'react';
 import MainHeaderComponent from '../components/MainHeaderComponent'
@@ -52,7 +52,7 @@ const SettingsPage: React.FC = () => {
               <IonRow className="body">
                 <IonCol size="9" className="blockquote">{currentKey()}</IonCol>
                 <IonCol>{createdAt()}</IonCol>
-                <IonCol><IonIcon icon={checkmarkCircle}></IonIcon></IonCol>
+                <IonCol><IonLabel>Valid</IonLabel></IonCol>
               </IonRow>
             </IonGrid>
 
