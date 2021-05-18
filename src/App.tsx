@@ -38,29 +38,33 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App: React.FC = () => (
-  <IonApp>
+const isAuthenticated = () => {
+  if (localStorage.getItem('apiKey') !== null) return true
+  return false
+}
+
+
+const App: React.FC = () => {
+
+  const customerRoutes = (
+    <>
+      <CustomerRoute exact path="/events" unauthorizedTo="/signin">
+        <EventsPage />
+      </CustomerRoute>
+      <CustomerRoute exact path="/analytics" unauthorizedTo="/signin">
+        <AnalyticsPage />
+      </CustomerRoute>
+      <CustomerRoute path="/settings" unauthorizedTo="/signin">
+        <SettingsPage />
+      </CustomerRoute>
+    </>
+  )
+
+  const footer = (!isAuthenticated() ? null :
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/">
-            <Redirect to="/signin" />
-          </Route>
-          <GuestRoute exact path="/signin" unauthorizedTo="/events">
-            <SigninPage />
-          </GuestRoute>
-          <GuestRoute exact path="/signup" unauthorizedTo="/events">
-            <SignupPage />
-          </GuestRoute>
-          <CustomerRoute exact path="/events" unauthorizedTo="/signin">
-            <EventsPage />
-          </CustomerRoute>
-          <CustomerRoute exact path="/analytics" unauthorizedTo="/signin">
-            <AnalyticsPage />
-          </CustomerRoute>
-          <CustomerRoute path="/settings" unauthorizedTo="/signin">
-            <SettingsPage />
-          </CustomerRoute>
+          {customerRoutes}
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="events" href="/events">
@@ -78,7 +82,27 @@ const App: React.FC = () => (
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
-  </IonApp>
-);
+  )
 
-export default App;
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          {customerRoutes}
+          <Route exact path="/">
+            <Redirect to="/signin" />
+          </Route>
+          <GuestRoute exact path="/signin" unauthorizedTo="/events">
+            <SigninPage />
+          </GuestRoute>
+          <GuestRoute exact path="/signup" unauthorizedTo="/events">
+            <SignupPage />
+          </GuestRoute>
+        </IonRouterOutlet>
+      </IonReactRouter>
+      {footer}
+    </IonApp>
+  )
+}
+
+export default App

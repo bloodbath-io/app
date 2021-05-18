@@ -1,6 +1,5 @@
 import { IonContent, IonPage, useIonToast, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, useIonLoading } from '@ionic/react'
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import MainHeaderComponent from '../components/MainHeaderComponent'
 import './SigninPage.css'
@@ -14,7 +13,6 @@ const SigninPage: React.FC = () => {
   const [mutationSignin] = useMutation(MUTATION_SIGNIN)
   const [toast, dismissToast] = useIonToast();
   const [loading, dismissLoading] = useIonLoading();
-  let history = useHistory();
 
   const clickSignin = () => {
     loading('Authentication to Bloodbath', 0, 'dots')
@@ -23,13 +21,7 @@ const SigninPage: React.FC = () => {
       const apiKey = signin.apiKey
       localStorage.setItem('apiKey', apiKey)
       dismissLoading()
-      history.push('/events')
-      toast({
-        message: `Great! Sign-in successful`,
-        duration: 2000,
-        color: 'success',
-        buttons: [{ text: 'hide', handler: () => dismissToast() }],
-      })
+      window.location.href = "/"
     }).catch((error) => {
       dismissLoading()
       toast({
