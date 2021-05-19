@@ -10,8 +10,8 @@ const SettingsPage: React.FC = () => {
     return localStorage.getItem('apiKey')
   }
 
-  const createdAt = () => {
-    return "01/01/2010"
+  const insertedAt = () => {
+    return localStorage.getItem('insertedAt')
   }
 
   const clickSignOut = () => {
@@ -50,7 +50,7 @@ const SettingsPage: React.FC = () => {
               </IonRow>
               <IonRow className="body">
                 <IonCol size="9" className="blockquote">{currentKey()}</IonCol>
-                <IonCol>{createdAt()}</IonCol>
+                <IonCol>{insertedAt()}</IonCol>
                 <IonCol><IonLabel>Valid</IonLabel></IonCol>
               </IonRow>
             </IonGrid>

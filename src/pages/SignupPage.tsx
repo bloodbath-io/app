@@ -21,8 +21,9 @@ const SignupPage: React.FC = () => {
     loading('Registering to Bloodbath', 0, 'dots')
 
     mutationSignup({ variables: { email, password, firstName, lastName, organizationInput: { name: companyName } } }).then(({ data: { signup } }) => {
-      const apiKey = signup.apiKey
+      const { apiKey, insertedAt } = signup
       localStorage.setItem('apiKey', apiKey)
+      localStorage.setItem('insertedAt', insertedAt)
       dismissLoading()
       window.location.href = "/"
     }).catch((error) => {

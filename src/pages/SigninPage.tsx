@@ -18,8 +18,9 @@ const SigninPage: React.FC = () => {
     loading('Authentication to Bloodbath', 0, 'dots')
 
     mutationSignin({ variables: { email, password } }).then(({ data: { signin }}) => {
-      const apiKey = signin.apiKey
+      const { apiKey, insertedAt } = signin
       localStorage.setItem('apiKey', apiKey)
+      localStorage.setItem('insertedAt', insertedAt)
       dismissLoading()
       window.location.href = "/"
     }).catch((error) => {

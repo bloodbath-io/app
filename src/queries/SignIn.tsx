@@ -10,6 +10,7 @@ export const MUTATION_SIGNIN = gql`
       password: $password
     ) {
       apiKey
+      insertedAt
       organization {
         id
       }

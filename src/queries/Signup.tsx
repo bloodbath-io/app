@@ -17,6 +17,7 @@ export const MUTATION_SIGNUP = gql`
     ) {
       id
       apiKey
+      insertedAt
     }
   }
 `;
