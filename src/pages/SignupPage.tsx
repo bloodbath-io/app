@@ -15,10 +15,10 @@ const SignupPage: React.FC = () => {
   const [companyName, setCompanyName] = useState<string>();
   const [mutationSignup] = useMutation(MUTATION_SIGNUP)
   const [toast, dismissToast] = useIonToast();
-  const [loading, dismissLoading] = useIonLoading();
+  const [showLoading, dismissLoading] = useIonLoading();
 
   const clickSignup = () => {
-    loading('Registering to Bloodbath', 0, 'dots')
+    showLoading('Registering to Bloodbath', 0, 'dots')
 
     mutationSignup({ variables: { email, password, firstName, lastName, organizationInput: { name: companyName } } }).then(({ data: { signup } }) => {
       const { apiKey, insertedAt } = signup

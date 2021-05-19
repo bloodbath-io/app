@@ -12,10 +12,10 @@ const SigninPage: React.FC = () => {
   const [password, setPassword] = useState<string>()
   const [mutationSignin] = useMutation(MUTATION_SIGNIN)
   const [toast, dismissToast] = useIonToast();
-  const [loading, dismissLoading] = useIonLoading();
+  const [showLoading, dismissLoading] = useIonLoading();
 
   const clickSignin = () => {
-    loading('Authentication to Bloodbath', 0, 'dots')
+    showLoading('Authentication to Bloodbath', 0, 'dots')
 
     mutationSignin({ variables: { email, password } }).then(({ data: { signin }}) => {
       const { apiKey, insertedAt } = signin

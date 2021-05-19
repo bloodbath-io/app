@@ -9,3 +9,9 @@ ion-row .header {
 ion-row .body {
   border: 1px solid #eeeeee;
 }
+
+ion-col {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
