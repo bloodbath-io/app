@@ -1,10 +1,11 @@
 import { IonContent, IonPage, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
 import React, { useState } from 'react'
-import { useQuery } from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
 import MainHeaderComponent from '../components/MainHeaderComponent'
 import './EventsPage.css';
 
 import { QUERY_LIST_EVENTS } from '../queries/ListEvents'
+import { MUTATION_REMOVE_EVENT } from '../queries/RemoveEvent'
 
 let loadingSpawned = false
 let dismissSpawned = false
@@ -13,11 +14,25 @@ const EventPage: React.FC = () => {
 
   const [toast, dismissToast] = useIonToast()
   const [showLoading, dismissLoading] = useIonLoading();
-  const { loading, error, data } = useQuery(QUERY_LIST_EVENTS, {
-    context: {
-      headers: { "Authorization": `Bearer ${localStorage.getItem('apiKey')}` }
-    }
+  const [mutationRemoveEvent] = useMutation(MUTATION_REMOVE_EVENT, {
+    refetchQueries: [{ query: QUERY_LIST_EVENTS }],
   })
+  const { loading, error, data } = useQuery(QUERY_LIST_EVENTS)
+  const clickRemoveEvent = (id: any) => {
+    showLoading('Removing event', 0, 'dots')
+
+    mutationRemoveEvent({ variables: { id } }).then(({ data: { removeEvent }}) => {
+      const { id } = removeEvent
+      dismissLoading()
+    }).catch((error) => {
+      dismissLoading()
+      toast({
+        message: `Woops! ${error.message}`,
+        duration: 2000,
+        buttons: [{ text: 'hide', handler: () => dismissToast() }],
+      })
+    })
+  }
 
   if (loading) {
     if (!loadingSpawned) {
@@ -46,6 +61,11 @@ const EventPage: React.FC = () => {
 
   if (data?.listEvents.length > 0) {
     for (const [index, value] of data.listEvents.entries()) {
+
+      const deleteButton = value.lockedAt? null : (
+        <IonButton onClick={() => { clickRemoveEvent(value.id) }}>Delete</IonButton>
+      )
+
       events.push(
         <IonRow className="body" key={index}>
           <IonCol size="2">{value.id}</IonCol>
@@ -57,7 +77,10 @@ const EventPage: React.FC = () => {
           <IonCol size="1">{value.enqueuedAt}</IonCol>
           <IonCol size="1">{value.lockedAt}</IonCol>
           <IonCol size="1">{value.dispatchedAt}</IonCol>
-          <IonCol size="2"><IonButton color="secondary">Show</IonButton><IonButton>Delete</IonButton></IonCol>
+          <IonCol size="2">
+            <IonButton color="secondary">Show</IonButton>
+            {deleteButton}
+          </IonCol>
         </IonRow>
       )
     }
