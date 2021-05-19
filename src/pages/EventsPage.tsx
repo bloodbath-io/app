@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
+import { IonContent, IonPage, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
 import React, { useState } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import MainHeaderComponent from '../components/MainHeaderComponent'
@@ -7,22 +7,39 @@ import './EventsPage.css';
 import { QUERY_LIST_EVENTS } from '../queries/ListEvents'
 import { MUTATION_REMOVE_EVENT } from '../queries/RemoveEvent'
 
+interface ModalBodyProps {
+  children: React.ReactNode
+  id: string
+}
+
+
+const ModalBody: React.FC<ModalBodyProps> = ({ children, id, ...rest }) => {
+  return (
+    <>
+    {id}
+    </>
+  )
+}
+
 let loadingSpawned = false
 let dismissSpawned = false
 
 const EventPage: React.FC = () => {
-
+  const [id, setId] = useState<string>()
   const [toast, dismissToast] = useIonToast()
   const [showLoading, dismissLoading] = useIonLoading();
   const [mutationRemoveEvent] = useMutation(MUTATION_REMOVE_EVENT, {
     refetchQueries: [{ query: QUERY_LIST_EVENTS }],
   })
+  // const [id, setId] = useState<string>()
   const { loading, error, data } = useQuery(QUERY_LIST_EVENTS)
-  const clickRemoveEvent = (id: any) => {
+
+  const [showModal, dismissModal] = useIonModal(ModalBody, { id })
+
+  const clickRemoveEvent = (id: string) => {
     showLoading('Removing event', 0, 'dots')
 
     mutationRemoveEvent({ variables: { id } }).then(({ data: { removeEvent }}) => {
-      const { id } = removeEvent
       dismissLoading()
     }).catch((error) => {
       dismissLoading()
@@ -78,7 +95,7 @@ const EventPage: React.FC = () => {
           <IonCol size="1">{value.lockedAt}</IonCol>
           <IonCol size="1">{value.dispatchedAt}</IonCol>
           <IonCol size="2">
-            <IonButton color="secondary">Show</IonButton>
+            <IonButton color="secondary" onClick={() => { setId(value.id); showModal() }}>Show</IonButton>
             {deleteButton}
           </IonCol>
         </IonRow>
