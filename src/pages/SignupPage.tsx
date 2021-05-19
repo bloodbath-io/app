@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, IonButtons } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, useIonToast, useIonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import MainHeaderComponent from '../components/MainHeaderComponent'
@@ -14,14 +14,24 @@ const SignupPage: React.FC = () => {
   const [lastName, setLastName] = useState<string>();
   const [companyName, setCompanyName] = useState<string>();
   const [mutationSignup] = useMutation(MUTATION_SIGNUP)
+  const [toast, dismissToast] = useIonToast();
+  const [loading, dismissLoading] = useIonLoading();
 
   const clickSignup = () => {
+    loading('Registering to Bloodbath', 0, 'dots')
+
     mutationSignup({ variables: { email, password, firstName, lastName, organizationInput: { name: companyName } } }).then(({ data: { signup } }) => {
       const apiKey = signup.apiKey
       localStorage.setItem('apiKey', apiKey)
-      alert("Sign-up successful")
+      dismissLoading()
+      window.location.href = "/"
     }).catch((error) => {
-      alert(error.message)
+      dismissLoading()
+      toast({
+        message: `Woops! ${error.message}`,
+        duration: 2000,
+        buttons: [{ text: 'hide', handler: () => dismissToast() }],
+      })
     })
   }
 
