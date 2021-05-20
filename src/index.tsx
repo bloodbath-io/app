@@ -3,39 +3,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
 
-// const client = new ApolloClient({
-//   uri: "http://localhost:4000/graphql/full",
-//   // uri: "https://api.bloodbath.io/graphql/full",
-//   cache: new InMemoryCache(),
-// });
+import { BloodbathApollo } from './Client'
 
-const httpLink = createHttpLink({
-  uri: "http://localhost:4000/graphql/full",
-})
-
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('apiKey');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    }
-  }
-})
-
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
-})
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
+    <BloodbathApollo>
       <App />
-    </ApolloProvider>
+    </BloodbathApollo>
   </React.StrictMode>,
   document.getElementById('root')
 );

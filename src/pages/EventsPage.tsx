@@ -5,15 +5,29 @@ import MainHeaderComponent from '../components/MainHeaderComponent'
 import './EventsPage.css';
 
 import { QUERY_LIST_EVENTS } from '../queries/ListEvents'
+import { QUERY_GET_EVENT } from '../queries/GetEvent'
 import { MUTATION_REMOVE_EVENT } from '../queries/RemoveEvent'
 
-interface ModalBodyProps {
+import { client } from './../Client'
+
+interface ShowEventProps {
   children: React.ReactNode
   id: string
 }
 
 
-const ModalBody: React.FC<ModalBodyProps> = ({ children, id, ...rest }) => {
+const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
+  const [toast, dismissToast] = useIonToast()
+  const { loading, error, data } = useQuery(QUERY_GET_EVENT, { variables: { id }, client })
+
+  if (error) {
+    toast({
+      message: `Woops! ${error.message}`,
+      duration: 2000,
+      buttons: [{ text: 'hide', handler: () => dismissToast() }],
+    })
+  }
+
   return (
     <>
     {id}
@@ -22,7 +36,6 @@ const ModalBody: React.FC<ModalBodyProps> = ({ children, id, ...rest }) => {
 }
 
 let loadingSpawned = false
-let dismissSpawned = false
 
 const EventPage: React.FC = () => {
   const [id, setId] = useState<string>()
@@ -31,10 +44,9 @@ const EventPage: React.FC = () => {
   const [mutationRemoveEvent] = useMutation(MUTATION_REMOVE_EVENT, {
     refetchQueries: [{ query: QUERY_LIST_EVENTS }],
   })
-  // const [id, setId] = useState<string>()
   const { loading, error, data } = useQuery(QUERY_LIST_EVENTS)
 
-  const [showModal, dismissModal] = useIonModal(ModalBody, { id })
+  const [showModal, dismissModal] = useIonModal(ShowEvent, { id })
 
   const clickRemoveEvent = (id: string) => {
     showLoading('Removing event', 0, 'dots')
@@ -55,10 +67,6 @@ const EventPage: React.FC = () => {
     if (!loadingSpawned) {
       loadingSpawned = true
       showLoading('Loading events', 0, 'dots')
-    }
-  } else {
-    if (!dismissSpawned) {
-      dismissSpawned = true
     }
   }
 
