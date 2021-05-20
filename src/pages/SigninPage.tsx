@@ -14,15 +14,22 @@ const SigninPage: React.FC = () => {
   const [toast, dismissToast] = useIonToast();
   const [showLoading, dismissLoading] = useIonLoading();
 
+  const pressEnter = (event: any, callback: any) => {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      callback()
+    }
+  }
+
   const clickSignin = () => {
     showLoading('Authentication to Bloodbath', 0, 'dots')
 
-    mutationSignin({ variables: { email, password } }).then(({ data: { signin }}) => {
+    mutationSignin({ variables: { email, password } }).then(({ data: { signin } }) => {
       const { apiKey, insertedAt } = signin
       localStorage.setItem('apiKey', apiKey)
       localStorage.setItem('insertedAt', insertedAt)
       dismissLoading()
-      window.location.href = "/"
+      window.location.href = "/events"
     }).catch((error) => {
       dismissLoading()
       toast({
@@ -60,7 +67,8 @@ const SigninPage: React.FC = () => {
                     type="email"
                     value={email}
                     required
-                    onIonChange={e => setEmail(e.detail.value!)}
+                    onIonChange={event => setEmail(event.detail.value!)}
+                    onKeyPress={event => { pressEnter(event, clickSignin) }}
                   >
                   </IonInput>
                 </IonItem>
@@ -70,7 +78,8 @@ const SigninPage: React.FC = () => {
                     type="password"
                     value={password}
                     required
-                    onIonChange={e => setPassword(e.detail.value!)}
+                    onIonChange={event => setPassword(event.detail.value!)}
+                    onKeyPress={event => { pressEnter(event, clickSignin) }}
                   >
                   </IonInput>
                 </IonItem>

@@ -17,7 +17,7 @@ const SettingsPage: React.FC = () => {
   const clickSignOut = () => {
     localStorage.removeItem('apiKey')
     localStorage.removeItem('insertedAt')
-    window.location.href = "/"
+    window.location.reload()
   }
 
   return (

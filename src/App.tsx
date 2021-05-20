@@ -87,18 +87,16 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <IonRouterOutlet>
-          {customerRoutes}
-          <Route exact path="/">
-            <Redirect to="/signin" />
-          </Route>
-          <GuestRoute exact path="/signin" unauthorizedTo="/events">
-            <SigninPage />
-          </GuestRoute>
-          <GuestRoute exact path="/signup" unauthorizedTo="/events">
-            <SignupPage />
-          </GuestRoute>
-        </IonRouterOutlet>
+        {customerRoutes}
+        <Route exact path="/">
+          <Redirect to="/signin" />
+        </Route>
+        <GuestRoute exact path="/signin" unauthorizedTo="/events">
+          <SigninPage />
+        </GuestRoute>
+        <GuestRoute exact path="/signup" unauthorizedTo="/events">
+          <SignupPage />
+        </GuestRoute>
       </IonReactRouter>
       {footer}
     </IonApp>

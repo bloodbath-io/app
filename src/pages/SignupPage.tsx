@@ -25,7 +25,7 @@ const SignupPage: React.FC = () => {
       localStorage.setItem('apiKey', apiKey)
       localStorage.setItem('insertedAt', insertedAt)
       dismissLoading()
-      window.location.href = "/"
+      window.location.href = "/events"
     }).catch((error) => {
       dismissLoading()
       toast({
