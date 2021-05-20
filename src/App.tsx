@@ -46,8 +46,8 @@ const isAuthenticated = () => {
 
 const App: React.FC = () => {
 
-  const customerRoutes = (
-    <>
+  const Routes = (
+    <IonRouterOutlet>
       <CustomerRoute exact path="/events" unauthorizedTo="/signin">
         <EventsPage />
       </CustomerRoute>
@@ -57,15 +57,22 @@ const App: React.FC = () => {
       <CustomerRoute path="/settings" unauthorizedTo="/signin">
         <SettingsPage />
       </CustomerRoute>
-    </>
+      <Route exact path="/">
+        <Redirect to="/signin" />
+      </Route>
+      <GuestRoute exact path="/signin" unauthorizedTo="/events">
+        <SigninPage />
+      </GuestRoute>
+      <GuestRoute exact path="/signup" unauthorizedTo="/events">
+        <SignupPage />
+      </GuestRoute>
+    </IonRouterOutlet>
   )
 
-  const footer = (!isAuthenticated() ? null :
+  const Footer = (!isAuthenticated() ? null :
     <IonReactRouter>
       <IonTabs>
-        <IonRouterOutlet>
-          {customerRoutes}
-        </IonRouterOutlet>
+        {Routes}
         <IonTabBar slot="bottom">
           <IonTabButton tab="events" href="/events">
             <IonIcon icon={list} />
@@ -87,18 +94,9 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        {customerRoutes}
-        <Route exact path="/">
-          <Redirect to="/signin" />
-        </Route>
-        <GuestRoute exact path="/signin" unauthorizedTo="/events">
-          <SigninPage />
-        </GuestRoute>
-        <GuestRoute exact path="/signup" unauthorizedTo="/events">
-          <SignupPage />
-        </GuestRoute>
+        {Routes}
       </IonReactRouter>
-      {footer}
+      {Footer}
     </IonApp>
   )
 }
