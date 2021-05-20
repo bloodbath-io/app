@@ -28,10 +28,124 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
     })
   }
 
+  if (!data) return (<></>)
+
+  const event = data.getEvent
+
   return (
-    <>
-    {id}
-    </>
+    <IonPage>
+      <IonContent fullscreen>
+
+        <IonRow className="ion-justify-content-left">
+          <IonCol>
+
+            <IonItem>
+              <IonTitle>
+                State
+              </IonTitle>
+            </IonItem>
+
+            <IonGrid className="ion-margin">
+              <IonRow>
+                <IonCol className="header">
+                  Created at
+                </IonCol>
+                <IonCol>
+                  {event.insertedAt}
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol className="header">
+                  Last updated at
+                </IonCol>
+                <IonCol>
+                  {event.updatedAt}
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol className="header">
+                  Scheduled for
+                </IonCol>
+                <IonCol>
+                  {event.scheduledFor}
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol className="header">
+                  Enqueued at
+                </IonCol>
+                <IonCol>
+                  {event.enqueuedAt}
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol className="header">
+                  Locked at
+                </IonCol>
+                <IonCol>
+                  {event.lockedAt}
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol className="header">
+                  Dispatched at
+                </IonCol>
+                <IonCol>
+                  {event.dispatchedAt}
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </IonCol>
+        </IonRow>
+
+        <IonRow>
+          <IonCol>
+
+            <IonItem>
+              <IonTitle>
+                Payload
+              </IonTitle>
+            </IonItem>
+
+            <IonGrid className="ion-margin">
+              <IonRow>
+                <IonCol className="header">
+                  Endpoint
+                </IonCol>
+                <IonCol>
+                  {event.endpoint}
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol className="header">
+                  Method
+                </IonCol>
+                <IonCol>
+                  {event.method}
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol className="header">
+                  Headers
+                </IonCol>
+                <IonCol>
+                  {event.headers}
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol className="header">
+                  Body
+                </IonCol>
+                <IonCol>
+                  {event.body}
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </IonCol>
+        </IonRow>
+
+      </IonContent>
+    </IonPage>
   )
 }
 
@@ -51,7 +165,7 @@ const EventPage: React.FC = () => {
   const clickRemoveEvent = (id: string) => {
     showLoading('Removing event', 0, 'dots')
 
-    mutationRemoveEvent({ variables: { id } }).then(({ data: { removeEvent }}) => {
+    mutationRemoveEvent({ variables: { id } }).then(({ data: { removeEvent } }) => {
       dismissLoading()
     }).catch((error) => {
       dismissLoading()
@@ -87,7 +201,7 @@ const EventPage: React.FC = () => {
   if (data?.listEvents.length > 0) {
     for (const [index, value] of data.listEvents.entries()) {
 
-      const deleteButton = value.lockedAt? null : (
+      const deleteButton = value.lockedAt ? null : (
         <IonButton onClick={() => { clickRemoveEvent(value.id) }}>Delete</IonButton>
       )
 
