@@ -1,4 +1,4 @@
-import { Redirect, Route, RouteProps } from 'react-router-dom';
+import { Route, Redirect } from 'react-router';
 import {
   IonApp,
   IonIcon,
