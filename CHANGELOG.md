@@ -1,47 +1,65 @@
-## [1.1.0] 2021-02-04
-### Bug fixing
-- Changed all class components to functional ones (the `pages/_app.js` and `pages/_document.js` were kept as class components, read more here: https://nextjs.org/docs/advanced-features/custom-document)
-### Major style changes
-- Delete the `src/assets/scss/bootstrap` folder and changed all the bootstrap imports from `src/assets/scss` files to ones from `node_modules`
-### Deleted components
-### Added components
-### Deleted dependencies
-- @types/react
-- @types/markerclustererplus
-- @types/googlemaps
-- react-google-maps (We've replace this plugin with Google Maps API Vanilla JS)
-### Added dependencies
-+ bootstrap@4.6.0 (and deleted the downloaded version of Bootstrap)
-+ node-sass-package-importer@5.3.2 (so we can import bootstrap from node_modules)
-### Updated dependencies
-```
-@fortawesome/fontawesome-free    5.14.0   →   5.15.2
-chart.js                          2.9.3   →    2.9.4
-moment                           2.27.0   →   2.29.1
-next                              9.5.2   →   10.0.6
-next-compose-plugins              2.2.0   →    2.2.1
-nouislider                       14.6.1   →   14.6.3
-react                           16.13.1   →   17.0.1
-react-chartjs-2                  2.10.0   →   2.11.1
-react-copy-to-clipboard           5.0.2   →    5.0.3
-react-datetime                   2.16.3   →    3.0.4
-react-dom                       16.13.1   →   17.0.1
-reactstrap                        8.5.1   →    8.9.0
-```
-### Warning
-_The following warnings will appear when running the installation command, but they do not affect the UI or the functionality of the product (they will be solved in our next update):_
-```
-npm WARN react-datetime@3.0.4 requires a peer of react@^16.5.0 but none is installed. You must install peer dependencies yourself.
-npm WARN react-popper@1.3.7 requires a peer of react@0.14.x || ^15.0.0 || ^16.0.0 but none is installed. You must install peer dependencies yourself.
-npm WARN create-react-context@0.3.0 requires a peer of react@^0.14.0 || ^15.0.0 || ^16.0.0 but none is installed. You must install peer dependencies yourself.
-```
-_If they will persist in our 2.*.* version, we will drop their usages and replace them with other plugins._
-_In development mode, some of the above plugins will throw a warning because they still use React v16 syntax. If the error will persist in our 2.*.* version, we will drop their usage and replace them with other plugins._
+# Change Log
 
-## [1.0.0] 2020-09-14
-### Original Release
-- Started project with NextJS
-- Added design from Argon Dashboard React by Creative Tim
-### Warning
-_Warnings might appear while doing an npm install - they do not affect the UI or the functionality of the product, and they appear because of NodeJS and not from the product itself._
-_While in development some of the plugins that were used for this product will throw some warnings - note, this only happens in development, the UI or the functionality of the product is not affected, also, if the issues will persist in React 17, we'll drop usage of those plugins, and replace them with other ones._
+## V1.0.0
+
+###### Aug 7, 2020
+
+- Add `eslint`
+- Add `Feather Icons`
+- Add `Formik` for login/register pages
+- Implement `react-router` v6 routing method
+- Remove extra views
+- Remove `node-sass` dependency
+- Update all components to match the PRO version style
+- Update dependencies
+- Update folder structure to remove folder depth
+- Update theme configuration
+
+## V0.4.0
+
+###### Jul 24, 2019
+
+- Adjust theme colors
+- Implement `useStyle` hook instead of `withStyles` HOC
+- Implement a custom Route component to wrap views in layouts
+- Remove `services` and `data` folders, each component has its own data
+- Remove unused `.scss` files from `assets` folder
+- Replace `.jsx` with `.js`
+- Replace Class Components with Function Components
+- Replace custom cumponents (Portlet) with Material-UI built-in components
+- Replace dependency `classnames` with `clsx`
+- Update dependencies
+- Update the layout to match the PRO version
+
+## V0.3.0
+
+###### May 13, 2019
+
+- Implement `jsconfig.json` file and removed `.env` to match React v16.8.6 absolute paths
+- Update chart styles and options
+- Update Dashboard view top widgets styles and structure
+- Update few icons to match @material-ui v4 updates
+- Update React version to 16.8.6 to support React Hooks
+- Update to @material-ui to 4.0.0-beta
+
+## V0.2.0
+
+###### May 11, 2019
+
+- Add docs for IE11 polyfill
+- Fix `DisplayMode` component size, when used as a flex child it could grow/shrink
+- Fix `ProductCard` component description height
+- Fix `Typography` view responsiveness for small devices
+- Fix charts responsiveness
+- Remove "status" from `ProductCard` component since it was not part of released design
+- Remove `auth` service folder since it won't be implemented for this version
+- Remove `authGuard` since it won't be used in this version
+- Remove unused components from shared components
+- Remove unused scss from assets
+- Update README.md
+
+## V0.1.0
+
+###### May 2, 2019
+
+### Initial commit
