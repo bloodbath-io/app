@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
+import { isAuthenticated } from '../helpers/auth'
 
 interface CustomerRouteProps extends RouteProps {
   children: React.ReactNode
@@ -9,10 +10,6 @@ interface CustomerRouteProps extends RouteProps {
 const DEFAULT_REDIRECT = '/signin'
 
 const CustomerRoute: React.FC<CustomerRouteProps> = ({ children, unauthorizedTo, ...rest }) => {
-  const isAuthenticated = () => {
-    if (localStorage.getItem('apiKey') !== null) return true
-    return false
-  }
 
   const redirect = unauthorizedTo || DEFAULT_REDIRECT
 

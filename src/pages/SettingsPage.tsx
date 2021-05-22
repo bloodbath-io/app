@@ -14,12 +14,6 @@ const SettingsPage: React.FC = () => {
     return localStorage.getItem('insertedAt')
   }
 
-  const clickSignOut = () => {
-    localStorage.removeItem('apiKey')
-    localStorage.removeItem('insertedAt')
-    window.location.reload()
-  }
-
   return (
     <IonPage>
       <MainHeaderComponent />
@@ -90,7 +84,9 @@ const SettingsPage: React.FC = () => {
 
             <IonGrid className="ion-margin">
               <IonRow>
-                <IonCol><IonButton onClick={clickSignOut}>Sign-out</IonButton></IonCol>
+                <IonCol>
+                  Nothing yet
+                </IonCol>
               </IonRow>
             </IonGrid>
 

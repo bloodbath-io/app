@@ -38,10 +38,8 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const isAuthenticated = () => {
-  if (localStorage.getItem('apiKey') !== null) return true
-  return false
-}
+/* Helpers */
+import { isAuthenticated } from './helpers/auth'
 
 
 const App: React.FC = () => {
