@@ -1,8 +1,50 @@
 /* Ionic Variables and Theming. For more info, please see:
 http://ionicframework.com/docs/theming/ */
 
+ion-tab-bar {
+  background-color: #fff;
+}
+
+ion-tab-button {
+  background-color: #fff;
+}
+
+ion-grid.table {
+  background-color: #fff;
+  border: 1px solid #d8dbdc;
+  border-radius: 4px;
+}
+
+ion-row .table-header {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+ion-row .table-body {
+  border: 0px;
+  border-top: 1px solid #eeeeee;
+}
+
+ion-card {
+  background-color: #fff;
+}
+
+ion-col {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  border-left: 0px;
+  border-right: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 /** Ionic CSS Variables **/
 :root {
+  --ion-background-color: #f3f6f8;
+
   /** primary **/
   --ion-color-primary: #ea5757;
   --ion-color-primary-rgb: 234,87,87;

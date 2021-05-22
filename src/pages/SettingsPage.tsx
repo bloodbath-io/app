@@ -1,7 +1,6 @@
 import { IonContent, IonPage, IonRow, IonCol, IonItem, IonTitle, IonButton, IonLabel, IonCardSubtitle, IonGrid } from '@ionic/react';
 import React from 'react';
 import MainHeaderComponent from '../components/MainHeaderComponent'
-import './SettingsPage.scss';
 
 
 const SettingsPage: React.FC = () => {
@@ -27,7 +26,7 @@ const SettingsPage: React.FC = () => {
               </IonTitle>
             </IonItem>
 
-            <IonGrid class="ion-margin">
+            <IonGrid className="ion-margin">
               <IonRow>
                 <IonCol>
                   <IonCardSubtitle>
@@ -37,13 +36,13 @@ const SettingsPage: React.FC = () => {
               </IonRow>
             </IonGrid>
 
-            <IonGrid className="ion-margin">
-              <IonRow className="header">
+            <IonGrid className="ion-margin table">
+              <IonRow className="table-header">
                 <IonCol size="9">Key</IonCol>
                 <IonCol>Created at</IonCol>
                 <IonCol>Status</IonCol>
               </IonRow>
-              <IonRow className="body">
+              <IonRow className="table-body">
                 <IonCol size="9" className="blockquote">{currentKey()}</IonCol>
                 <IonCol>{insertedAt()}</IonCol>
                 <IonCol><IonLabel>Valid</IonLabel></IonCol>

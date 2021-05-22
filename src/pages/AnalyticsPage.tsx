@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, IonAlert } from '@ionic/react';
+import { IonContent, IonPage, IonRow, IonCol, IonButtons, IonIcon, IonButton, IonAlert, IonCard } from '@ionic/react';
 import React from 'react';
 import MainHeaderComponent from '../components/MainHeaderComponent'
 
@@ -10,7 +10,6 @@ const AnalyticsPage: React.FC = () => {
       <IonContent fullscreen>
         <IonRow className="ion-justify-content-center">
           <IonCol sizeXs="10" sizeMd="5">
-
             <IonRow className="ion-justify-content-center">
               <IonCol className="ion-align-self-center" style={{ textAlign: "center" }} >
                 <IonIcon src="assets/illustrations/analytics.svg" style={{ fontSize: "20em" }}></IonIcon>

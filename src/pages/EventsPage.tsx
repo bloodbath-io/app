@@ -46,7 +46,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
 
             <IonGrid className="ion-margin">
               <IonRow>
-                <IonCol className="header">
+                <IonCol className="table-header">
                   Created at
                 </IonCol>
                 <IonCol>
@@ -54,7 +54,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol className="header">
+                <IonCol className="table-header">
                   Last updated at
                 </IonCol>
                 <IonCol>
@@ -62,7 +62,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol className="header">
+                <IonCol className="table-header">
                   Scheduled for
                 </IonCol>
                 <IonCol>
@@ -70,7 +70,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol className="header">
+                <IonCol className="table-header">
                   Enqueued at
                 </IonCol>
                 <IonCol>
@@ -78,7 +78,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol className="header">
+                <IonCol className="table-header">
                   Locked at
                 </IonCol>
                 <IonCol>
@@ -86,7 +86,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol className="header">
+                <IonCol className="table-header">
                   Dispatched at
                 </IonCol>
                 <IonCol>
@@ -106,9 +106,9 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
               </IonTitle>
             </IonItem>
 
-            <IonGrid className="ion-margin">
+            <IonGrid className="ion-margin table">
               <IonRow>
-                <IonCol className="header">
+                <IonCol className="table-header">
                   Endpoint
                 </IonCol>
                 <IonCol>
@@ -116,7 +116,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol className="header">
+                <IonCol className="table-header">
                   Method
                 </IonCol>
                 <IonCol>
@@ -124,7 +124,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol className="header">
+                <IonCol className="table-header">
                   Headers
                 </IonCol>
                 <IonCol>
@@ -132,7 +132,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol className="header">
+                <IonCol className="table-header">
                   Body
                 </IonCol>
                 <IonCol>
@@ -205,7 +205,7 @@ const EventPage: React.FC = () => {
       )
 
       events.push(
-        <IonRow className="body" key={index}>
+        <IonRow className="table-body" key={index}>
           <IonCol size="2">{value.id}</IonCol>
           <IonCol size="1">{value.method}</IonCol>
           <IonCol size="1">{value.headers}</IonCol>
@@ -238,6 +238,13 @@ const EventPage: React.FC = () => {
                   <IonTitle>
                     Events
               </IonTitle>
+                  <IonRow className="ion-align-items-end">
+                    <IonCol>
+                      <IonButton color="primary">
+                        Documentation
+                    </IonButton>
+                    </IonCol>
+                  </IonRow>
                 </IonItem>
 
                 <IonGrid class="ion-margin">
@@ -250,8 +257,8 @@ const EventPage: React.FC = () => {
                   </IonRow>
                 </IonGrid>
 
-                <IonGrid className="ion-margin">
-                  <IonRow className="header">
+                <IonGrid className="ion-margin table">
+                  <IonRow className="table-header">
                     <IonCol size="2">ID</IonCol>
                     <IonCol size="1">Method</IonCol>
                     <IonCol size="1">Headers</IonCol>
