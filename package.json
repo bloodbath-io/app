@@ -2,6 +2,10 @@
   "name": "bloodbath",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node" : "15.3.0"
+  },
+  "engineStrict": true,
   "dependencies": {
     "@apollo/client": "^3.3.18",
     "@capacitor/core": "2.4.7",
