@@ -1,8 +1,11 @@
-import { IonContent, IonModal, IonIcon, IonPage, IonBackButton, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
+import { IonContent, IonModal, IonPage, IonBadge, IonBackButton, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
 import React, { useState } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import MainHeaderComponent from '../components/MainHeaderComponent'
 import ShowEvent from '../components/ShowEvent'
+
+import { bytes } from '../helpers/format'
+import { fromNow } from '../helpers/date'
 
 import { QUERY_LIST_EVENTS } from '../queries/ListEvents'
 import { MUTATION_REMOVE_EVENT } from '../queries/RemoveEvent'
@@ -10,7 +13,7 @@ import { MUTATION_REMOVE_EVENT } from '../queries/RemoveEvent'
 let loadingSpawned = false
 
 const EventPage: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState<string>('');
   const [toast, dismissToast] = useIonToast()
   const [showLoading, dismissLoading] = useIonLoading();
   const [mutationRemoveEvent] = useMutation(MUTATION_REMOVE_EVENT, {
@@ -55,29 +58,29 @@ const EventPage: React.FC = () => {
   let events: Array<any> = []
 
   if (data?.listEvents.length > 0) {
-    for (const [index, value] of data.listEvents.entries()) {
+    for (const [index, event] of data.listEvents.entries()) {
 
-      const deleteButton = value.lockedAt ? null : (
-        <IonButton onClick={() => { clickRemoveEvent(value.id) }}>Delete</IonButton>
+      const deleteButton = event.lockedAt ? null : (
+        <IonButton onClick={() => { clickRemoveEvent(event.id) }}>Delete</IonButton>
       )
 
       events.push(
         <IonRow className="table-body" key={index}>
-          <IonCol size="2">{value.id}</IonCol>
-          <IonCol size="1">{value.method}</IonCol>
-          <IonCol size="1">{value.endpoint}</IonCol>
-          <IonCol size="1">{value.headers}</IonCol>
-          <IonCol size="1">{value.body}</IonCol>
-          <IonCol size="1">{value.scheduledFor}</IonCol>
-          <IonCol size="1">{value.enqueuedAt}</IonCol>
-          <IonCol size="1">{value.lockedAt}</IonCol>
-          <IonCol size="1">{value.dispatchedAt}</IonCol>
+          <IonCol size="2">{event.id}</IonCol>
+          <IonCol size="1"><IonBadge color="light">{event.method}</IonBadge></IonCol>
+          <IonCol size="1">{event.endpoint}</IonCol>
+          <IonCol size="1">{bytes(event.headers)}</IonCol>
+          <IonCol size="1">{bytes(event.body)}</IonCol>
+          <IonCol size="1">{fromNow(event.scheduledFor)}</IonCol>
+          <IonCol size="1">{fromNow(event.enqueuedAt)}</IonCol>
+          <IonCol size="1">{fromNow(event.lockedAt)}</IonCol>
+          <IonCol size="1">{fromNow(event.dispatchedAt)}</IonCol>
           <IonCol size="2" className="ion-text-right">
-            <IonButton color="secondary" onClick={() => { setShowModal(true) }}>Show</IonButton>
+            <IonButton color="secondary" onClick={() => { setShowModal(event.id) }}>Show</IonButton>
             {deleteButton}
             <IonContent>
-              <IonModal isOpen={showModal} onDidDismiss={() => setShowModal(false)}>
-                <ShowEvent id={value.id} setShowModal={setShowModal} />
+              <IonModal isOpen={showModal === event.id} onDidDismiss={() => setShowModal('')}>
+                <ShowEvent id={event.id} setShowModal={setShowModal} />
               </IonModal>
             </IonContent>
           </IonCol>
@@ -99,7 +102,7 @@ const EventPage: React.FC = () => {
                 <IonItem>
                   <IonTitle>
                     Events
-              </IonTitle>
+                </IonTitle>
                   <IonRow className="ion-align-items-end">
                     <IonCol>
                       <IonButton color="primary">
@@ -114,7 +117,7 @@ const EventPage: React.FC = () => {
                     <IonCol>
                       <IonCardSubtitle>
                         This list shows the last 500 events scheduled on Bloodbath.
-                  </IonCardSubtitle>
+                      </IonCardSubtitle>
                     </IonCol>
                   </IonRow>
                 </IonGrid>

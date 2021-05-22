@@ -1,6 +1,23 @@
 /* Ionic Variables and Theming. For more info, please see:
 http://ionicframework.com/docs/theming/ */
 
+ion-badge {
+  text-transform: uppercase;
+  padding: 0.5em;
+}
+
+.modal-wrapper {
+  min-height: 80vh !important;
+}
+
+ion-col ion-icon {
+  font-size: 20px;
+}
+
+ion-header ion-button {
+  font-size: 20px !important;
+}
+
 ion-tab-bar {
   background-color: #fff;
 }

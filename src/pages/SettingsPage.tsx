@@ -1,16 +1,26 @@
-import { IonContent, IonPage, IonRow, IonCol, IonItem, IonTitle, IonButton, IonLabel, IonCardSubtitle, IonGrid } from '@ionic/react';
+import { IonContent, IonPage, IonRow, IonCol, IonItem, IonTitle, useIonToast, IonButton, IonLabel, IonCardSubtitle, IonGrid } from '@ionic/react';
 import React from 'react';
 import MainHeaderComponent from '../components/MainHeaderComponent'
-
+import { fromNow } from '../helpers/date'
+import './SettingsPage.scss'
 
 const SettingsPage: React.FC = () => {
-
+  const [toast, dismissToast] = useIonToast()
   const currentKey = () => {
     return localStorage.getItem('apiKey')
   }
 
   const insertedAt = () => {
     return localStorage.getItem('insertedAt')
+  }
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(`${currentKey()}`)
+    toast({
+      message: `Your key was copied to your clipboard.`,
+      duration: 2000,
+      buttons: [{ text: 'hide', handler: () => dismissToast() }],
+    })
   }
 
   return (
@@ -43,8 +53,8 @@ const SettingsPage: React.FC = () => {
                 <IonCol>Status</IonCol>
               </IonRow>
               <IonRow>
-                <IonCol size="9" className="blockquote">{currentKey()}</IonCol>
-                <IonCol>{insertedAt()}</IonCol>
+                <IonCol size="9"><span onClick={copyToClipboard} className="key">{currentKey()}</span></IonCol>
+                <IonCol>{fromNow(insertedAt())}</IonCol>
                 <IonCol><IonLabel>Valid</IonLabel></IonCol>
               </IonRow>
             </IonGrid>
@@ -84,7 +94,7 @@ const SettingsPage: React.FC = () => {
             <IonGrid className="ion-margin">
               <IonRow>
                 <IonCol>
-                  Nothing yet
+                  You're currently logged-in.
                 </IonCol>
               </IonRow>
             </IonGrid>

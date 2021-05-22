@@ -1,7 +1,8 @@
-import { IonContent, IonIcon, IonPage, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
+import { IonContent, IonIcon, IonBadge, IonPage, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { closeOutline } from 'ionicons/icons'
+import { exactDate } from '../helpers/date'
 
 import { QUERY_GET_EVENT } from '../queries/GetEvent'
 
@@ -39,7 +40,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
               <IonTitle>
                 Occurrence
               </IonTitle>
-              <IonButton onClick={() => { setShowModal(false) }}  color="secondary">
+              <IonButton onClick={() => { setShowModal('') }} color="secondary">
                 <IonIcon icon={closeOutline} />
               </IonButton>
             </IonItem>
@@ -64,7 +65,11 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
               <IonTitle>
                 State
               </IonTitle>
+              <IonCardSubtitle>
+                    Dates are shown in local time
+                  </IonCardSubtitle>
             </IonItem>
+
 
             <IonGrid className="ion-margin table-custom">
               <IonRow>
@@ -72,7 +77,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
                   Created at
                 </IonCol>
                 <IonCol>
-                  {event.insertedAt}
+                  {exactDate(event.insertedAt)}
                 </IonCol>
               </IonRow>
               <IonRow className="table-record">
@@ -80,7 +85,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
                   Last updated at
                 </IonCol>
                 <IonCol>
-                  {event.updatedAt}
+                  {exactDate(event.updatedAt)}
                 </IonCol>
               </IonRow>
               <IonRow className="table-record">
@@ -88,7 +93,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
                   Scheduled for
                 </IonCol>
                 <IonCol>
-                  {event.scheduledFor}
+                  {exactDate(event.scheduledFor)}
                 </IonCol>
               </IonRow>
               <IonRow className="table-record">
@@ -96,7 +101,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
                   Enqueued at
                 </IonCol>
                 <IonCol>
-                  {event.enqueuedAt}
+                  {exactDate(event.enqueuedAt)}
                 </IonCol>
               </IonRow>
               <IonRow className="table-record">
@@ -104,7 +109,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
                   Locked at
                 </IonCol>
                 <IonCol>
-                  {event.lockedAt}
+                  {exactDate(event.lockedAt)}
                 </IonCol>
               </IonRow>
               <IonRow className="table-record">
@@ -112,7 +117,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
                   Dispatched at
                 </IonCol>
                 <IonCol>
-                  {event.dispatchedAt}
+                  {exactDate(event.dispatchedAt)}
                 </IonCol>
               </IonRow>
             </IonGrid>
@@ -139,10 +144,10 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
               </IonRow>
               <IonRow className="table-record">
                 <IonCol className="table-header">
-                  Method
+                  HTTP Method
                 </IonCol>
                 <IonCol>
-                  {event.method}
+                  <IonBadge color="light">{event.method}</IonBadge>
                 </IonCol>
               </IonRow>
               <IonRow className="table-record">
