@@ -1,8 +1,6 @@
 import { IonContent, IonPage, IonRow, IonCol, IonItem, IonLabel, IonInput, IonIcon, IonButton, IonAlert } from '@ionic/react';
 import React from 'react';
 import MainHeaderComponent from '../components/MainHeaderComponent'
-import './AnalyticsPage.css';
-
 
 const AnalyticsPage: React.FC = () => {
 

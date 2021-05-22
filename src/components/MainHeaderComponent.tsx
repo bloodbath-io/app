@@ -1,7 +1,7 @@
 import { IonHeader, IonTitle, IonToolbar, IonIcon, IonButton, IonButtons } from '@ionic/react';
 import React from 'react';
 import { logOutOutline } from 'ionicons/icons';
-import './MainHeaderComponent.css';
+import './MainHeaderComponent.scss';
 import { isAuthenticated } from '../helpers/auth'
 
 const MainHeaderComponent: React.FC = () => {

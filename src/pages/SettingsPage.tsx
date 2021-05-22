@@ -1,7 +1,7 @@
 import { IonContent, IonPage, IonRow, IonCol, IonItem, IonTitle, IonButton, IonLabel, IonCardSubtitle, IonGrid } from '@ionic/react';
 import React from 'react';
 import MainHeaderComponent from '../components/MainHeaderComponent'
-import './SettingsPage.css';
+import './SettingsPage.scss';
 
 
 const SettingsPage: React.FC = () => {

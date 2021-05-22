@@ -2,7 +2,6 @@ import { IonContent, IonPage, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol
 import React, { useState } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import MainHeaderComponent from '../components/MainHeaderComponent'
-import './EventsPage.css';
 
 import { QUERY_LIST_EVENTS } from '../queries/ListEvents'
 import { QUERY_GET_EVENT } from '../queries/GetEvent'

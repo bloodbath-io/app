@@ -2,7 +2,6 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, I
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import MainHeaderComponent from '../components/MainHeaderComponent'
-import './SignupPage.css';
 
 import { MUTATION_SIGNUP } from '../queries/Signup'
 
