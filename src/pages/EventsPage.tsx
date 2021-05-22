@@ -65,7 +65,7 @@ const EventPage: React.FC = () => {
       )
 
       events.push(
-        <IonRow className="table-body" key={index}>
+        <IonRow key={index}>
           <IonCol size="2">{event.id}</IonCol>
           <IonCol size="1"><IonBadge color="light">{event.method}</IonBadge></IonCol>
           <IonCol size="1">{event.endpoint}</IonCol>
