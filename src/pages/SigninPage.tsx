@@ -22,7 +22,7 @@ const SigninPage: React.FC = () => {
   }
 
   const clickSignin = () => {
-    showLoading('Authentication to Bloodbath', 0, 'dots')
+    showLoading('Authentication to Bloodbath', 2000, 'dots')
 
     mutationSignin({ variables: { email, password } }).then(({ data: { signin } }) => {
       const { apiKey, insertedAt } = signin
