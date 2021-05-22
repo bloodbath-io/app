@@ -44,7 +44,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
               </IonTitle>
             </IonItem>
 
-            <IonGrid className="ion-margin">
+            <IonGrid className="ion-margin table-custom">
               <IonRow>
                 <IonCol className="table-header">
                   Created at
@@ -53,7 +53,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                   {event.insertedAt}
                 </IonCol>
               </IonRow>
-              <IonRow>
+              <IonRow className="table-record">
                 <IonCol className="table-header">
                   Last updated at
                 </IonCol>
@@ -61,7 +61,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                   {event.updatedAt}
                 </IonCol>
               </IonRow>
-              <IonRow>
+              <IonRow className="table-record">
                 <IonCol className="table-header">
                   Scheduled for
                 </IonCol>
@@ -69,7 +69,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                   {event.scheduledFor}
                 </IonCol>
               </IonRow>
-              <IonRow>
+              <IonRow className="table-record">
                 <IonCol className="table-header">
                   Enqueued at
                 </IonCol>
@@ -77,7 +77,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                   {event.enqueuedAt}
                 </IonCol>
               </IonRow>
-              <IonRow>
+              <IonRow className="table-record">
                 <IonCol className="table-header">
                   Locked at
                 </IonCol>
@@ -85,7 +85,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                   {event.lockedAt}
                 </IonCol>
               </IonRow>
-              <IonRow>
+              <IonRow className="table-record">
                 <IonCol className="table-header">
                   Dispatched at
                 </IonCol>
@@ -106,7 +106,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
               </IonTitle>
             </IonItem>
 
-            <IonGrid className="ion-margin table">
+            <IonGrid className="ion-margin table-custom">
               <IonRow>
                 <IonCol className="table-header">
                   Endpoint
@@ -115,7 +115,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                   {event.endpoint}
                 </IonCol>
               </IonRow>
-              <IonRow>
+              <IonRow className="table-record">
                 <IonCol className="table-header">
                   Method
                 </IonCol>
@@ -123,7 +123,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                   {event.method}
                 </IonCol>
               </IonRow>
-              <IonRow>
+              <IonRow className="table-record">
                 <IonCol className="table-header">
                   Headers
                 </IonCol>
@@ -131,7 +131,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
                   {event.headers}
                 </IonCol>
               </IonRow>
-              <IonRow>
+              <IonRow className="table-record">
                 <IonCol className="table-header">
                   Body
                 </IonCol>
@@ -215,7 +215,7 @@ const EventPage: React.FC = () => {
           <IonCol size="1">{value.enqueuedAt}</IonCol>
           <IonCol size="1">{value.lockedAt}</IonCol>
           <IonCol size="1">{value.dispatchedAt}</IonCol>
-          <IonCol size="2">
+          <IonCol size="2" className="ion-text-right">
             <IonButton color="secondary" onClick={() => { setId(value.id); showModal() }}>Show</IonButton>
             {deleteButton}
           </IonCol>
@@ -247,7 +247,7 @@ const EventPage: React.FC = () => {
                   </IonRow>
                 </IonItem>
 
-                <IonGrid class="ion-margin">
+                <IonGrid className="ion-margin">
                   <IonRow>
                     <IonCol>
                       <IonCardSubtitle>
@@ -258,7 +258,7 @@ const EventPage: React.FC = () => {
                 </IonGrid>
 
                 <IonGrid className="ion-margin table">
-                  <IonRow className="table-header">
+                  <IonRow>
                     <IonCol size="2">ID</IonCol>
                     <IonCol size="1">Method</IonCol>
                     <IonCol size="1">Headers</IonCol>
@@ -268,7 +268,7 @@ const EventPage: React.FC = () => {
                     <IonCol size="1">Enqueued at</IonCol>
                     <IonCol size="1">Locked at</IonCol>
                     <IonCol size="1">Dispatched at</IonCol>
-                    <IonCol size="2">Action</IonCol>
+                    <IonCol size="2" className="ion-text-right">Action</IonCol>
                   </IonRow>
                   {events}
                 </IonGrid>

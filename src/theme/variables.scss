@@ -9,36 +9,65 @@ ion-tab-button {
   background-color: #fff;
 }
 
-ion-grid.table {
+.illustration-grid {
+  margin-top: 2em;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 5em;
+}
+
+.table {
   background-color: #fff;
   border: 1px solid #d8dbdc;
   border-radius: 4px;
+
+  ion-row {
+    border: 0px;
+    border-top: 1px solid #eeeeee;
+
+    &:first-child {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 12px;
+      border-top: 0px;
+    }
+  }
+
+  ion-col {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    border-left: 0px;
+    border-right: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
 }
 
-ion-row .table-header {
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 12px;
-}
+.table-custom {
+  background-color: #fff;
+  border: 1px solid #d8dbdc;
+  border-radius: 4px;
 
-ion-row .table-body {
-  border: 0px;
-  border-top: 1px solid #eeeeee;
+  .table-header {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    border-top: 0px;
+  }
+
+  .table-body {
+  }
+
+  .table-record {
+    border: 0px;
+    border-top: 1px solid #eeeeee;
+  }
 }
 
 ion-card {
   background-color: #fff;
-}
-
-ion-col {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: middle;
-  border-left: 0px;
-  border-right: 0px;
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 /** Ionic CSS Variables **/

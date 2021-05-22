@@ -9,7 +9,7 @@ const AnalyticsPage: React.FC = () => {
       <MainHeaderComponent />
       <IonContent fullscreen>
         <IonRow className="ion-justify-content-center">
-          <IonCol sizeXs="10" sizeMd="5">
+          <IonCol sizeXs="10" sizeMd="5" className="illustration-grid">
             <IonRow className="ion-justify-content-center">
               <IonCol className="ion-align-self-center" style={{ textAlign: "center" }} >
                 <IonIcon src="assets/illustrations/analytics.svg" style={{ fontSize: "20em" }}></IonIcon>

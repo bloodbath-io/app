@@ -37,12 +37,12 @@ const SettingsPage: React.FC = () => {
             </IonGrid>
 
             <IonGrid className="ion-margin table">
-              <IonRow className="table-header">
+              <IonRow>
                 <IonCol size="9">Key</IonCol>
                 <IonCol>Created at</IonCol>
                 <IonCol>Status</IonCol>
               </IonRow>
-              <IonRow className="table-body">
+              <IonRow>
                 <IonCol size="9" className="blockquote">{currentKey()}</IonCol>
                 <IonCol>{insertedAt()}</IonCol>
                 <IonCol><IonLabel>Valid</IonLabel></IonCol>
