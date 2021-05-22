@@ -1,7 +1,8 @@
-import { IonContent, IonPage, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
+import { IonContent, IonModal, IonIcon, IonPage, IonBackButton, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
 import React, { useState } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import MainHeaderComponent from '../components/MainHeaderComponent'
+import { closeOutline } from 'ionicons/icons'
 
 import { QUERY_LIST_EVENTS } from '../queries/ListEvents'
 import { QUERY_GET_EVENT } from '../queries/GetEvent'
@@ -10,12 +11,13 @@ import { MUTATION_REMOVE_EVENT } from '../queries/RemoveEvent'
 import { client } from './../Client'
 
 interface ShowEventProps {
-  children: React.ReactNode
+  // children: React.ReactNode
+  setShowModal: any
   id: string
 }
 
 
-const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
+const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
   const [toast, dismissToast] = useIonToast()
   const { loading, error, data } = useQuery(QUERY_GET_EVENT, { variables: { id }, client })
 
@@ -34,6 +36,31 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
   return (
     <IonPage>
       <IonContent fullscreen>
+
+        <IonRow className="ion-justify-content-left">
+          <IonCol>
+
+            <IonItem>
+              <IonTitle>
+                Occurrence
+              </IonTitle>
+              <IonButton onClick={() => { setShowModal(false) }}  color="secondary">
+                <IonIcon icon={closeOutline} />
+              </IonButton>
+            </IonItem>
+
+            <IonGrid className="ion-margin table-custom">
+              <IonRow>
+                <IonCol className="table-header" size="1">
+                  ID
+                </IonCol>
+                <IonCol className="ion-align-items-end ion-text-end">
+                  {event.id}
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </IonCol>
+        </IonRow>
 
         <IonRow className="ion-justify-content-left">
           <IonCol>
@@ -151,7 +178,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ children, id, ...rest }) => {
 let loadingSpawned = false
 
 const EventPage: React.FC = () => {
-  const [id, setId] = useState<string>()
+  const [showModal, setShowModal] = useState(false);
   const [toast, dismissToast] = useIonToast()
   const [showLoading, dismissLoading] = useIonLoading();
   const [mutationRemoveEvent] = useMutation(MUTATION_REMOVE_EVENT, {
@@ -159,7 +186,7 @@ const EventPage: React.FC = () => {
   })
   const { loading, error, data } = useQuery(QUERY_LIST_EVENTS)
 
-  const [showModal, dismissModal] = useIonModal(ShowEvent, { id })
+  // const [showModal,] = useIonModal(ShowEvent, { id })
 
   const clickRemoveEvent = (id: string) => {
     showLoading('Removing event', 0, 'dots')
@@ -208,16 +235,21 @@ const EventPage: React.FC = () => {
         <IonRow className="table-body" key={index}>
           <IonCol size="2">{value.id}</IonCol>
           <IonCol size="1">{value.method}</IonCol>
+          <IonCol size="1">{value.endpoint}</IonCol>
           <IonCol size="1">{value.headers}</IonCol>
           <IonCol size="1">{value.body}</IonCol>
-          <IonCol size="1">{value.endpoint}</IonCol>
           <IonCol size="1">{value.scheduledFor}</IonCol>
           <IonCol size="1">{value.enqueuedAt}</IonCol>
           <IonCol size="1">{value.lockedAt}</IonCol>
           <IonCol size="1">{value.dispatchedAt}</IonCol>
           <IonCol size="2" className="ion-text-right">
-            <IonButton color="secondary" onClick={() => { setId(value.id); showModal() }}>Show</IonButton>
+            <IonButton color="secondary" onClick={() => { setShowModal(true) }}>Show</IonButton>
             {deleteButton}
+            <IonContent>
+              <IonModal isOpen={showModal}>
+                <ShowEvent id={value.id} setShowModal={setShowModal} />
+              </IonModal>
+            </IonContent>
           </IonCol>
         </IonRow>
       )
@@ -261,9 +293,9 @@ const EventPage: React.FC = () => {
                   <IonRow>
                     <IonCol size="2">ID</IonCol>
                     <IonCol size="1">Method</IonCol>
+                    <IonCol size="1">Endpoint</IonCol>
                     <IonCol size="1">Headers</IonCol>
                     <IonCol size="1">Body</IonCol>
-                    <IonCol size="1">Endpoint</IonCol>
                     <IonCol size="1">Scheduled for</IonCol>
                     <IonCol size="1">Enqueued at</IonCol>
                     <IonCol size="1">Locked at</IonCol>
