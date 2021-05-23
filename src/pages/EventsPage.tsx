@@ -10,6 +10,8 @@ import { fromNow } from '../helpers/date'
 import { QUERY_LIST_EVENTS } from '../queries/ListEvents'
 import { MUTATION_REMOVE_EVENT } from '../queries/RemoveEvent'
 
+import { gettingStartedGuide } from '../helpers/externalLinks'
+
 let loadingSpawned = false
 
 const EventPage: React.FC = () => {
@@ -106,7 +108,7 @@ const EventPage: React.FC = () => {
 
             <IonRow>
               <IonCol style={{ textAlign: "center" }}>
-                You don't have any event yet. Follow our <a href="/">getting started guide</a> to change that.
+                You don't have any event yet. Follow our <a href={gettingStartedGuide}>getting started guide</a> to change that.
               </IonCol>
             </IonRow>
 

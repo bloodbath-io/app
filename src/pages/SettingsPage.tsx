@@ -3,6 +3,7 @@ import React from 'react';
 import MainHeaderComponent from '../components/MainHeaderComponent'
 import { fromNow } from '../helpers/date'
 import './SettingsPage.scss'
+import { betaRelease } from '../helpers/externalLinks'
 
 const SettingsPage: React.FC = () => {
   const [toast, dismissToast] = useIonToast()
@@ -74,7 +75,7 @@ const SettingsPage: React.FC = () => {
             <IonGrid className="ion-margin">
               <IonRow>
                 <IonCol>
-                  You're currently on a <a href="/">beta release</a>. Enjoy Bloodbath for free!
+                  You're currently on a <a href={betaRelease} target="_blank" rel="noreferrer">beta release</a>. Enjoy Bloodbath for free!
                 </IonCol>
               </IonRow>
             </IonGrid>
