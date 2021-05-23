@@ -1,4 +1,4 @@
-import { IonContent, IonModal, IonPage, IonBadge, IonBackButton, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
+import { IonContent, IonModal, IonPage, IonBadge, IonBackButton, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton, IonSplitPane } from '@ionic/react'
 import React, { useState } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import MainHeaderComponent from '../components/MainHeaderComponent'
@@ -67,15 +67,15 @@ const EventPage: React.FC = () => {
       events.push(
         <IonRow key={index}>
           <IonCol size="2">{event.id}</IonCol>
-          <IonCol size="1"><IonBadge color="light">{event.method}</IonBadge></IonCol>
-          <IonCol size="1">{event.endpoint}</IonCol>
-          <IonCol size="1">{bytes(event.headers)}</IonCol>
-          <IonCol size="1">{bytes(event.body)}</IonCol>
-          <IonCol size="1">{fromNow(event.scheduledFor)}</IonCol>
-          <IonCol size="1">{fromNow(event.enqueuedAt)}</IonCol>
-          <IonCol size="1">{fromNow(event.lockedAt)}</IonCol>
-          <IonCol size="1">{fromNow(event.dispatchedAt)}</IonCol>
-          <IonCol size="2" className="ion-text-right">
+          <IonCol><IonBadge color="light">{event.method}</IonBadge></IonCol>
+          <IonCol>{event.endpoint}</IonCol>
+          <IonCol>{bytes(event.headers)}</IonCol>
+          <IonCol>{bytes(event.body)}</IonCol>
+          <IonCol className="hidden-md-down">{fromNow(event.scheduledFor)}</IonCol>
+          <IonCol className="hidden-md-down">{fromNow(event.enqueuedAt)}</IonCol>
+          <IonCol className="hidden-md-down">{fromNow(event.lockedAt)}</IonCol>
+          <IonCol className="hidden-md-down">{fromNow(event.dispatchedAt)}</IonCol>
+          <IonCol className="ion-text-right">
             <IonButton color="secondary" onClick={() => { setShowModal(event.id) }}>Show</IonButton>
             {deleteButton}
             <IonContent>
@@ -125,15 +125,15 @@ const EventPage: React.FC = () => {
                 <IonGrid className="ion-margin table">
                   <IonRow>
                     <IonCol size="2">ID</IonCol>
-                    <IonCol size="1">Method</IonCol>
-                    <IonCol size="1">Endpoint</IonCol>
-                    <IonCol size="1">Headers</IonCol>
-                    <IonCol size="1">Body</IonCol>
-                    <IonCol size="1">Scheduled for</IonCol>
-                    <IonCol size="1">Enqueued at</IonCol>
-                    <IonCol size="1">Locked at</IonCol>
-                    <IonCol size="1">Dispatched at</IonCol>
-                    <IonCol size="2" className="ion-text-right">Action</IonCol>
+                    <IonCol>Method</IonCol>
+                    <IonCol>Endpoint</IonCol>
+                    <IonCol>Headers</IonCol>
+                    <IonCol>Body</IonCol>
+                    <IonCol className="hidden-md-down">Scheduled for</IonCol>
+                    <IonCol className="hidden-md-down">Enqueued at</IonCol>
+                    <IonCol className="hidden-md-down">Locked at</IonCol>
+                    <IonCol className="hidden-md-down">Dispatched at</IonCol>
+                    <IonCol className="ion-text-right">Action</IonCol>
                   </IonRow>
                   {events}
                 </IonGrid>
