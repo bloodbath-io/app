@@ -48,11 +48,6 @@ const SignupPage: React.FC = () => {
     <IonPage>
       <MainHeaderComponent />
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Sign-in</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <IonRow className="ion-justify-content-center">
           <IonCol sizeXs="10" sizeMd="5">
 
