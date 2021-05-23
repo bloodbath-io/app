@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonRow, IonCol, IonItem, IonTitle, useIonToast, IonButton, IonLabel, IonCardSubtitle, IonGrid } from '@ionic/react';
+import { IonContent, IonApp, IonRow, IonCol, IonItem, IonTitle, useIonToast, IonButton, IonLabel, IonCardSubtitle, IonGrid } from '@ionic/react';
 import React from 'react';
 import MainHeaderComponent from '../components/MainHeaderComponent'
 import { fromNow } from '../helpers/date'
@@ -24,7 +24,7 @@ const SettingsPage: React.FC = () => {
   }
 
   return (
-    <IonPage>
+    <IonApp>
       <MainHeaderComponent />
       <IonContent fullscreen>
         <IonRow className="ion-justify-content-left">
@@ -102,7 +102,7 @@ const SettingsPage: React.FC = () => {
           </IonCol>
         </IonRow>
       </IonContent>
-    </IonPage>
+    </IonApp>
   );
 };
 

@@ -1,4 +1,4 @@
-import { IonContent, IonIcon, IonBadge, IonPage, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
+import { IonApp, IonContent, IonIcon, IonBadge, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton } from '@ionic/react'
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { closeOutline } from 'ionicons/icons'
@@ -25,14 +25,36 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
     })
   }
 
-  if (!data) return (<></>)
+  console.log('get data')
+  console.log(data)
+
+  if (!data) {
+    return (
+    <IonApp>
+      <IonContent fullscreen>
+        <IonRow>
+          <IonCol className="ion-align-self-center center-page" style={{ textAlign: "center" }}>
+          <IonIcon src="assets/illustrations/loading.svg" style={{ fontSize: "20em" }}></IonIcon>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol className="ion-align-self-center" style={{ textAlign: "center" }}>
+            Loading...
+          </IonCol>
+        </IonRow>
+      </IonContent>
+    </IonApp>
+    )
+  }
 
   const event = data.getEvent
 
-  return (
-    <IonPage>
-      <IonContent fullscreen>
+  console.log('will show event')
+  console.log(event)
 
+  return (
+    <IonApp>
+      <IonContent fullscreen>
         <IonRow className="ion-justify-content-left">
           <IonCol>
 
@@ -66,7 +88,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
                 State
               </IonTitle>
               <IonCardSubtitle>
-                    Dates are shown in local time
+                Dates are shown in local time
                   </IonCardSubtitle>
             </IonItem>
 
@@ -171,7 +193,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
         </IonRow>
 
       </IonContent>
-    </IonPage>
+    </IonApp>
   )
 }
 

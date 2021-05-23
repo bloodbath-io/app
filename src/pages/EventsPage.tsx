@@ -1,4 +1,4 @@
-import { IonContent, IonModal, IonPage, IonBadge, IonBackButton, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton, IonSplitPane } from '@ionic/react'
+import { IonIcon, IonContent, IonModal, IonApp, IonBadge, IonBackButton, IonTitle, IonGrid, IonCardSubtitle, IonRow, IonCol, useIonModal, IonItem, useIonToast, useIonLoading, IonButton, IonSplitPane } from '@ionic/react'
 import React, { useState } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import MainHeaderComponent from '../components/MainHeaderComponent'
@@ -17,9 +17,11 @@ const EventPage: React.FC = () => {
   const [toast, dismissToast] = useIonToast()
   const [showLoading, dismissLoading] = useIonLoading();
   const [mutationRemoveEvent] = useMutation(MUTATION_REMOVE_EVENT, {
-    refetchQueries: [{ query: QUERY_LIST_EVENTS }],
+    refetchQueries: [{ query: QUERY_LIST_EVENTS }]
   })
-  const { loading, error, data } = useQuery(QUERY_LIST_EVENTS)
+  const { loading, error, data } = useQuery(QUERY_LIST_EVENTS, {
+    pollInterval: 10000
+  })
 
   const clickRemoveEvent = (id: string) => {
     showLoading('Removing event', 0, 'dots')
@@ -39,7 +41,7 @@ const EventPage: React.FC = () => {
   if (loading) {
     if (!loadingSpawned) {
       loadingSpawned = true
-      showLoading('Loading events', 0, 'dots')
+      showLoading('Loading events', 3000, 'dots')
     }
   }
 
@@ -89,13 +91,41 @@ const EventPage: React.FC = () => {
     }
   }
 
-  return (
-    <IonPage>
+  if (events.length === 0) {
+    return (
+      <IonApp>
       <MainHeaderComponent />
       <IonContent fullscreen>
         <IonRow className="ion-justify-content-center">
-          <IonCol>
+          <IonCol sizeXs="10" sizeMd="5" className="illustration-grid">
+            <IonRow className="ion-justify-content-center">
+              <IonCol className="ion-align-self-center" style={{ textAlign: "center" }} >
+                <IonIcon src="assets/illustrations/events.svg" style={{ fontSize: "20em" }}></IonIcon>
+              </IonCol>
+            </IonRow>
 
+            <IonRow>
+              <IonCol style={{ textAlign: "center" }}>
+                You don't have any event yet. Follow our <a href="/">getting started guide</a> to change that.
+              </IonCol>
+            </IonRow>
+
+          </IonCol>
+
+        </IonRow>
+      </IonContent>
+    </IonApp>
+    )
+  }
+
+  return (
+    <IonApp>
+      <MainHeaderComponent />
+      <IonContent fullscreen>
+
+
+        <IonRow className="ion-justify-content-center">
+          <IonCol>
             <IonRow className="ion-justify-content-left">
               <IonCol>
 
@@ -144,7 +174,7 @@ const EventPage: React.FC = () => {
 
         </IonRow>
       </IonContent>
-    </IonPage>
+    </IonApp>
   );
 };
 

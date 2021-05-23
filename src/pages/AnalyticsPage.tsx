@@ -1,11 +1,11 @@
-import { IonContent, IonPage, IonRow, IonCol, IonButtons, IonIcon, IonButton, IonAlert, IonCard } from '@ionic/react';
+import { IonContent, IonApp, IonRow, IonCol, IonButtons, IonIcon, IonButton, IonAlert, IonCard } from '@ionic/react';
 import React from 'react';
 import MainHeaderComponent from '../components/MainHeaderComponent'
 
 const AnalyticsPage: React.FC = () => {
 
   return (
-    <IonPage>
+    <IonApp>
       <MainHeaderComponent />
       <IonContent fullscreen>
         <IonRow className="ion-justify-content-center">
@@ -26,7 +26,7 @@ const AnalyticsPage: React.FC = () => {
 
         </IonRow>
       </IonContent>
-    </IonPage>
+    </IonApp>
   );
 };
 
