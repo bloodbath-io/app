@@ -108,7 +108,7 @@ const EventPage: React.FC = () => {
 
             <IonRow>
               <IonCol style={{ textAlign: "center" }}>
-                You don't have any event yet. Follow our <a href={gettingStartedGuide}>getting started guide</a> to change that.
+                You don't have any event yet. Follow our <a href={gettingStartedGuide} target="_blank" rel="noreferrer">getting started guide</a> to change that.
               </IonCol>
             </IonRow>
 
@@ -137,7 +137,7 @@ const EventPage: React.FC = () => {
                 </IonTitle>
                   <IonRow className="ion-align-items-end">
                     <IonCol>
-                      <IonButton color="primary">
+                      <IonButton color="primary" onClick={() => { window.open("https://www.notion.so/Bloodbath-Guide-00a3edc8f43b4528b2e34bf5eac5b0df") }}>
                         Documentation
                     </IonButton>
                     </IonCol>
