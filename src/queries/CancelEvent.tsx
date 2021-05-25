@@ -1,10 +1,10 @@
 import { gql } from '@apollo/client';
 
-export const MUTATION_REMOVE_EVENT = gql`
-  mutation removeEvent(
+export const MUTATION_CANCEL_EVENT = gql`
+  mutation cancelEvent(
     $id: UUID4!
   ) {
-    removeEvent(
+    cancelEvent(
       id: $id
     ) {
       id

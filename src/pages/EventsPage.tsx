@@ -8,7 +8,7 @@ import { bytes } from '../helpers/format'
 import { fromNow } from '../helpers/date'
 
 import { QUERY_LIST_EVENTS } from '../queries/ListEvents'
-import { MUTATION_REMOVE_EVENT } from '../queries/RemoveEvent'
+import { MUTATION_CANCEL_EVENT } from '../queries/CancelEvent'
 
 import { gettingStartedGuide } from '../helpers/externalLinks'
 
@@ -18,17 +18,17 @@ const EventPage: React.FC = () => {
   const [showModal, setShowModal] = useState<string>('');
   const [toast, dismissToast] = useIonToast()
   const [showLoading, dismissLoading] = useIonLoading();
-  const [mutationRemoveEvent] = useMutation(MUTATION_REMOVE_EVENT, {
+  const [mutationCancelEvent] = useMutation(MUTATION_CANCEL_EVENT, {
     refetchQueries: [{ query: QUERY_LIST_EVENTS }]
   })
   const { loading, error, data } = useQuery(QUERY_LIST_EVENTS, {
     pollInterval: 10000
   })
 
-  const clickRemoveEvent = (id: string) => {
-    showLoading('Removing event', 0, 'dots')
+  const clickCancelEvent = (id: string) => {
+    showLoading('Cancelling event', 0, 'dots')
 
-    mutationRemoveEvent({ variables: { id } }).then(({ data: { removeEvent } }) => {
+    mutationCancelEvent({ variables: { id } }).then(({ data: { cancelEvent } }) => {
       dismissLoading()
     }).catch((error) => {
       dismissLoading()
@@ -64,8 +64,8 @@ const EventPage: React.FC = () => {
   if (data?.listEvents.length > 0) {
     for (const [index, event] of data.listEvents.entries()) {
 
-      const deleteButton = event.lockedAt ? null : (
-        <IonButton onClick={() => { clickRemoveEvent(event.id) }}>Delete</IonButton>
+      const cancelButton = event.lockedAt ? null : (
+        <IonButton onClick={() => { clickCancelEvent(event.id) }}>Cancel</IonButton>
       )
 
       events.push(
@@ -81,7 +81,7 @@ const EventPage: React.FC = () => {
           <IonCol className="hidden-md-down">{fromNow(event.dispatchedAt)}</IonCol>
           <IonCol className="ion-text-right">
             <IonButton color="secondary" onClick={() => { setShowModal(event.id) }}>Show</IonButton>
-            {deleteButton}
+            {cancelButton}
             <IonContent>
               <IonModal isOpen={showModal === event.id} onDidDismiss={() => setShowModal('')}>
                 <ShowEvent id={event.id} setShowModal={setShowModal} />

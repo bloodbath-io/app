@@ -1,10 +1,10 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_GET_EVENT = gql`
-  query getEvent(
+export const QUERY_FIND_EVENT = gql`
+  query findEvent(
     $id: UUID4!
   ) {
-    getEvent(
+    findEvent(
       id: $id
     ) {
       id

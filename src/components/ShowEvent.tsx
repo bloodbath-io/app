@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client'
 import { closeOutline } from 'ionicons/icons'
 import { exactDate } from '../helpers/date'
 
-import { QUERY_GET_EVENT } from '../queries/GetEvent'
+import { QUERY_FIND_EVENT } from '../queries/FindEvent'
 
 import { client } from './../Client'
 interface ShowEventProps {
@@ -15,7 +15,7 @@ interface ShowEventProps {
 
 const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
   const [toast, dismissToast] = useIonToast()
-  const { loading, error, data } = useQuery(QUERY_GET_EVENT, { variables: { id }, client })
+  const { loading, error, data } = useQuery(QUERY_FIND_EVENT, { variables: { id }, client })
 
   if (error) {
     toast({
@@ -47,7 +47,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
     )
   }
 
-  const event = data.getEvent
+  const event = data.findEvent
 
   console.log('will show event')
   console.log(event)
