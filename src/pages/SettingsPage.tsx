@@ -1,4 +1,4 @@
-import { IonContent, IonApp, IonRow, IonCol, IonItem, IonTitle, useIonToast, IonButton, IonLabel, IonCardSubtitle, IonGrid } from '@ionic/react';
+import { IonContent, IonApp, IonRow, IonCol, IonItem, IonTitle, useIonToast, IonButton, IonBadge, IonCardSubtitle, IonGrid } from '@ionic/react';
 import React from 'react';
 import MainHeaderComponent from '../components/MainHeaderComponent'
 import { fromNow } from '../helpers/date'
@@ -52,11 +52,13 @@ const SettingsPage: React.FC = () => {
                 <IonCol size="9">Key</IonCol>
                 <IonCol>Created at</IonCol>
                 <IonCol>Status</IonCol>
+                <IonCol>Actions</IonCol>
               </IonRow>
               <IonRow>
                 <IonCol size="9"><span onClick={copyToClipboard} className="key">{currentKey()}</span></IonCol>
                 <IonCol>{fromNow(insertedAt())}</IonCol>
-                <IonCol><IonLabel>Valid</IonLabel></IonCol>
+                <IonCol><IonBadge color="success">Valid</IonBadge></IonCol>
+                <IonCol><IonButton color="secondary" onClick={copyToClipboard}>Copy</IonButton></IonCol>
               </IonRow>
             </IonGrid>
 
