@@ -2,7 +2,7 @@ import { IonContent, IonHeader, IonApp, IonTitle, IonToolbar, IonRow, IonCol, Io
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import MainHeaderComponent from '../components/MainHeaderComponent'
-
+import { pressEnter } from '../helpers/keyboard'
 import { MUTATION_SIGNUP } from '../queries/Signup'
 
 const SignupPage: React.FC = () => {
@@ -66,6 +66,7 @@ const SignupPage: React.FC = () => {
                     value={email}
                     required
                     onIonChange={e => setEmail(e.detail.value!)}
+                    onKeyPress={event => { if (formFilled()) pressEnter(event, clickSignup) }}
                   >
                   </IonInput>
                 </IonItem>
@@ -78,6 +79,7 @@ const SignupPage: React.FC = () => {
                     value={password}
                     required
                     onIonChange={e => setPassword(e.detail.value!)}
+                    onKeyPress={event => { if (formFilled()) pressEnter(event, clickSignup) }}
                   >
                   </IonInput>
                 </IonItem>
@@ -93,6 +95,7 @@ const SignupPage: React.FC = () => {
                     value={firstName}
                     required
                     onIonChange={e => setfirstName(e.detail.value!)}
+                    onKeyPress={event => { if (formFilled()) pressEnter(event, clickSignup) }}
                   >
                   </IonInput>
                 </IonItem>
@@ -105,6 +108,7 @@ const SignupPage: React.FC = () => {
                     value={lastName}
                     required
                     onIonChange={e => setLastName(e.detail.value!)}
+                    onKeyPress={event => { if (formFilled()) pressEnter(event, clickSignup) }}
                   >
                   </IonInput>
                 </IonItem>
@@ -120,6 +124,7 @@ const SignupPage: React.FC = () => {
                     value={companyName}
                     required
                     onIonChange={e => setCompanyName(e.detail.value!)}
+                    onKeyPress={event => { if (formFilled()) pressEnter(event, clickSignup) }}
                   >
                   </IonInput>
                 </IonItem>

@@ -2,7 +2,7 @@ import { IonContent, IonApp, useIonToast, IonRow, IonCol, IonItem, IonLabel, Ion
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import MainHeaderComponent from '../components/MainHeaderComponent'
-
+import { pressEnter } from '../helpers/keyboard'
 import { MUTATION_SIGNIN } from '../queries/Signin'
 
 const SigninPage: React.FC = () => {
@@ -12,13 +12,6 @@ const SigninPage: React.FC = () => {
   const [mutationSignin] = useMutation(MUTATION_SIGNIN)
   const [toast, dismissToast] = useIonToast();
   const [showLoading, dismissLoading] = useIonLoading();
-
-  const pressEnter = (event: any, callback: any) => {
-    if (event.key === 'Enter') {
-      event.preventDefault()
-      callback()
-    }
-  }
 
   const clickSignin = () => {
     showLoading('Authentication to Bloodbath', 2000, 'dots')
@@ -67,7 +60,7 @@ const SigninPage: React.FC = () => {
                     value={email}
                     required
                     onIonChange={event => setEmail(event.detail.value!)}
-                    onKeyPress={event => { pressEnter(event, clickSignin) }}
+                    onKeyPress={event => { if (formFilled()) pressEnter(event, clickSignin) }}
                   >
                   </IonInput>
                 </IonItem>
@@ -78,7 +71,7 @@ const SigninPage: React.FC = () => {
                     value={password}
                     required
                     onIonChange={event => setPassword(event.detail.value!)}
-                    onKeyPress={event => { pressEnter(event, clickSignin) }}
+                    onKeyPress={event => { if (formFilled()) pressEnter(event, clickSignin) }}
                   >
                   </IonInput>
                 </IonItem>

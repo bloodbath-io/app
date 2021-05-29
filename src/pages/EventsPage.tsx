@@ -108,7 +108,7 @@ const EventPage: React.FC = () => {
 
             <IonRow>
               <IonCol style={{ textAlign: "center" }}>
-                You don't have any event yet. Follow our <a href={gettingStartedGuide} target="_blank" rel="noreferrer">getting started guide</a> to change that.
+                You don't have any events yet. Follow our <a href={gettingStartedGuide} target="_blank" rel="noreferrer">getting started guide</a> to change that.
               </IonCol>
             </IonRow>
 
