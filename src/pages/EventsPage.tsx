@@ -76,10 +76,8 @@ const EventPage: React.FC = () => {
           <IonCol>{bytes(event.headers)}</IonCol>
           <IonCol>{bytes(event.body)}</IonCol>
           <IonCol className="hidden-md-down">{fromNow(event.scheduledFor)}</IonCol>
-          <IonCol className="hidden-md-down">{fromNow(event.enqueuedAt)}</IonCol>
-          <IonCol className="hidden-md-down">{fromNow(event.lockedAt)}</IonCol>
           <IonCol className="hidden-md-down">{fromNow(event.dispatchedAt)}</IonCol>
-          <IonCol className="ion-text-right">
+          <IonCol size="2" className="ion-text-right">
             <IonButton color="secondary" onClick={() => { setShowModal(event.id) }}>Show</IonButton>
             {cancelButton}
             <IonContent>
@@ -162,10 +160,8 @@ const EventPage: React.FC = () => {
                     <IonCol>Headers</IonCol>
                     <IonCol>Body</IonCol>
                     <IonCol className="hidden-md-down">Scheduled for</IonCol>
-                    <IonCol className="hidden-md-down">Enqueued at</IonCol>
-                    <IonCol className="hidden-md-down">Locked at</IonCol>
                     <IonCol className="hidden-md-down">Dispatched at</IonCol>
-                    <IonCol className="ion-text-right">Action</IonCol>
+                    <IonCol size="2" className="ion-text-right">Action</IonCol>
                   </IonRow>
                   {events}
                 </IonGrid>
