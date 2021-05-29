@@ -26,7 +26,7 @@ const EventPage: React.FC = () => {
   })
 
   const clickCancelEvent = (id: string) => {
-    showLoading('Cancelling event', 0, 'dots')
+    showLoading('Cancelling event', 3000, 'dots')
 
     mutationCancelEvent({ variables: { id } }).then(({ data: { cancelEvent } }) => {
       dismissLoading()
