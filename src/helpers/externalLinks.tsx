@@ -1,2 +1,2 @@
-export const betaRelease = 'https://www.notion.so/loschcode/Being-on-the-beta-release-507b8a4cea51483dab37681db72cb666'
-export const gettingStartedGuide = 'https://www.notion.so/Create-your-first-event-c6544b42b42d452aa7e6f5f5a1f7d6a5'
+export const betaRelease = 'https://docs.bloodbath.io/Being-on-the-beta-release-507b8a4cea51483dab37681db72cb666'
+export const gettingStartedGuide = 'https://docs.bloodbath.io/Create-your-first-event-c6544b42b42d452aa7e6f5f5a1f7d6a5'
