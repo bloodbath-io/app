@@ -135,7 +135,7 @@ const EventPage: React.FC = () => {
                 </IonTitle>
                   <IonRow className="ion-align-items-end">
                     <IonCol>
-                      <IonButton color="primary" onClick={() => { window.open("https://www.notion.so/Bloodbath-Guide-00a3edc8f43b4528b2e34bf5eac5b0df") }}>
+                      <IonButton color="primary" onClick={() => { window.open("https://docs.bloodbath.io") }}>
                         Documentation
                     </IonButton>
                     </IonCol>
