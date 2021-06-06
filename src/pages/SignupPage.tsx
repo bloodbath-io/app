@@ -131,9 +131,23 @@ const SignupPage: React.FC = () => {
               </IonCol>
             </IonRow>
 
+
+            <IonRow>
+              <IonCol size="10" className="ion-align-self-center ion-justify-content-center" style={{ textAlign: "center", margin: "auto", paddingTop: "1.5em" }}>
+              You hereby accept our <a
+              href="https://legal.bloodbath.io/terms-of-use"
+              target="_blank"
+            >Terms of Use</a> as well as our <a
+              href="https://legal.bloodbath.io/privacy-policy"
+              target="_blank"
+            >Privacy Policy</a> by going further.
+
+              </IonCol>
+            </IonRow>
+
             <IonRow>
               <IonCol>
-                <IonButton expand="block" onClick={clickSignup} disabled={!formFilled()}>Sign-up free</IonButton>
+                <IonButton expand="block" onClick={clickSignup} disabled={!formFilled()}>Sign-up for free</IonButton>
               </IonCol>
             </IonRow>
 
