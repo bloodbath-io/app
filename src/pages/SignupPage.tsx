@@ -135,10 +135,10 @@ const SignupPage: React.FC = () => {
             <IonRow>
               <IonCol size="10" className="ion-align-self-center ion-justify-content-center" style={{ textAlign: "center", margin: "auto", paddingTop: "1.5em" }}>
               You hereby accept our <a
-              href="https://legal.bloodbath.io/terms-of-use"
+              href="https://bloodbath.notion.site/Terms-of-use-9d841843e365498cbc48c546d94a2516"
               target="_blank"
             >Terms of Use</a> as well as our <a
-              href="https://legal.bloodbath.io/privacy-policy"
+              href="https://bloodbath.notion.site/Privacy-policy-34446706209e46ee8e5a80aa209c6eb5"
               target="_blank"
             >Privacy Policy</a> by going further.
 
