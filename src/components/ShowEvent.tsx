@@ -49,9 +49,6 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
 
   const event = data.findEvent
 
-  console.log('will show event')
-  console.log(event)
-
   return (
     <IonApp>
       <IonContent fullscreen>

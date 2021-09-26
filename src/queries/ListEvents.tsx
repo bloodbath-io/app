@@ -8,10 +8,17 @@ export const QUERY_LIST_EVENTS = gql`
       }
       edges {
         node {
-        id
-        eventId
-        method
-        lockedAt
+          eventId
+          method
+          headers
+          body
+          endpoint
+          scheduledFor
+          enqueuedAt
+          lockedAt
+          dispatchedAt
+          insertedAt
+          updatedAt
         }
       }
     }

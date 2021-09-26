@@ -7,7 +7,7 @@ export const QUERY_FIND_EVENT = gql`
     findEvent(
       id: $id
     ) {
-      id
+      eventId
       method
       headers
       body
