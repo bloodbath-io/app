@@ -65,12 +65,12 @@ const EventPage: React.FC = () => {
     for (const [index, edge] of data.listEvents.edges.entries()) {
       const event = edge.node
       const cancelButton = event.lockedAt ? null : (
-        <IonButton onClick={() => { clickCancelEvent(event.id) }}>Cancel</IonButton>
+        <IonButton onClick={() => { clickCancelEvent(event.eventId) }}>Cancel</IonButton>
       )
 
       events.push(
         <IonRow key={index}>
-          <IonCol size="2">{event.id}</IonCol>
+          <IonCol size="2">{event.eventId}</IonCol>
           <IonCol><IonBadge color="light">{event.method}</IonBadge></IonCol>
           <IonCol>{event.endpoint}</IonCol>
           <IonCol>{bytes(event.headers)}</IonCol>
@@ -78,11 +78,11 @@ const EventPage: React.FC = () => {
           <IonCol className="hidden-md-down">{fromNow(event.scheduledFor)}</IonCol>
           <IonCol className="hidden-md-down">{fromNow(event.dispatchedAt)}</IonCol>
           <IonCol size="2" className="ion-text-right">
-            <IonButton color="secondary" onClick={() => { setShowModal(event.id) }}>Show</IonButton>
+            <IonButton color="secondary" onClick={() => { setShowModal(event.eventId) }}>Show</IonButton>
             {cancelButton}
             <IonContent>
-              <IonModal isOpen={showModal === event.id} onDidDismiss={() => setShowModal('')}>
-                <ShowEvent id={event.id} setShowModal={setShowModal} />
+              <IonModal isOpen={showModal === event.eventId} onDidDismiss={() => setShowModal('')}>
+                <ShowEvent id={event.eventId} setShowModal={setShowModal} />
               </IonModal>
             </IonContent>
           </IonCol>

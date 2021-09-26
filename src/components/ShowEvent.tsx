@@ -73,7 +73,7 @@ const ShowEvent: React.FC<ShowEventProps> = ({ id, setShowModal, ...rest }) => {
                   ID
                 </IonCol>
                 <IonCol className="ion-align-items-end ion-text-end">
-                  {event.id}
+                  {event.eventId}
                 </IonCol>
               </IonRow>
             </IonGrid>
