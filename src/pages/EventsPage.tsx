@@ -61,9 +61,9 @@ const EventPage: React.FC = () => {
 
   let events: Array<any> = []
 
-  if (data?.listEvents.length > 0) {
-    for (const [index, event] of data.listEvents.entries()) {
-
+  if (data?.listEvents.edges.length > 0) {
+    for (const [index, edge] of data.listEvents.edges.entries()) {
+      const event = edge.node
       const cancelButton = event.lockedAt ? null : (
         <IonButton onClick={() => { clickCancelEvent(event.id) }}>Cancel</IonButton>
       )
@@ -135,7 +135,7 @@ const EventPage: React.FC = () => {
                 </IonTitle>
                   <IonRow className="ion-align-items-end">
                     <IonCol>
-                      <IonButton color="primary" onClick={() => { window.open("https://bloodbath.notion.site/Guide-00a3edc8f43b4528b2e34bf5eac5b0df") }}>
+                      <IonButton color="primary" onClick={() => { window.open("https://docs.bloodbath.io") }}>
                         Documentation
                     </IonButton>
                     </IonCol>
@@ -146,7 +146,7 @@ const EventPage: React.FC = () => {
                   <IonRow>
                     <IonCol>
                       <IonCardSubtitle>
-                        This list shows the last 500 events scheduled on Bloodbath.
+                        This list shows the last 100 events scheduled on Bloodbath.
                       </IonCardSubtitle>
                     </IonCol>
                   </IonRow>
